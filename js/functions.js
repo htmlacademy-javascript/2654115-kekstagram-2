@@ -35,3 +35,6 @@ function findNumberInStr(str){
 
   return number;
 }
+checkStrLenght('тестовая строка', 10);
+checkStrForPalindrom('Лёша на полке клопа нашёл');
+findNumberInStr('1 кефир, 0.5 батона');
