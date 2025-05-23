@@ -1,9 +1,10 @@
+//проверка длины строки
 function checkStrLenght(str, length){
 
   return (str.length <= length);
 
 }
-
+//проверка строки на палиндром
 function checkStrForPalindrom(str){
   const strNormalize = str.replaceAll(' ','').toUpperCase();
   const endString = strNormalize.length - 1;
@@ -16,4 +17,21 @@ function checkStrForPalindrom(str){
 
   return true;
 }
-console.log(checkStrForPalindrom("Лёша на полке клопа нашёл1"));
+
+//Поиск числа в строке(доп)
+function findNumberInStr(str){
+  let strNumber = '';
+  let number = 0;
+  for(let i = 0; i < str.length; i++){
+
+    if(str[i] >= '0' && str[i] <= '9'){
+
+      strNumber += str[i];
+
+    }
+
+  }
+  number = parseInt(strNumber, 10);
+
+  return number;
+}
