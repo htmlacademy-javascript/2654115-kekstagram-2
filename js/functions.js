@@ -5,7 +5,7 @@ function checkStrLenght(str, length){
 }
 
 function checkStrForPalindrom(str){
-  const strNormalize = str.replaceAll().toUpperCase();
+  const strNormalize = str.replaceAll(' ','').toUpperCase();
   const endString = strNormalize.length - 1;
 
   for(let i = 0; i < Math.floor(strNormalize.length / 2); i++){
@@ -16,3 +16,4 @@ function checkStrForPalindrom(str){
 
   return true;
 }
+console.log(checkStrForPalindrom("Лёша на полке клопа нашёл1"));
