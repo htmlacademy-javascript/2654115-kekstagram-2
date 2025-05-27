@@ -1,4 +1,9 @@
 const MAX_ID_IMG = 25;
+const MAX_ID_COMMMENT = 10000;
+const MAX_COMMMENT = 30;
+const MIN_CNT_LIKE = 15;
+const MAX_CNT_LIKE = 200;
+
 const DESCRIPTION = [
   'Красивый кадр!',
   'Отличный ракурс.',
@@ -59,6 +64,12 @@ const NAME = [
   'Роман',
   'Юлия'];
 
+const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
+
+const generateCommentId = getRandomUnqNumber(1, MAX_ID_COMMMENT);
+const generateImgId = getRandomUnqNumber(1, MAX_ID_IMG);
+const generateImgUrlId = getRandomUnqNumber(1, MAX_ID_IMG);
+
 function getRandomInteger (min, max) {
   const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
   const upper = Math.floor(Math.max(Math.abs(min), Math.abs(max)));
@@ -67,14 +78,13 @@ function getRandomInteger (min, max) {
   return Math.floor(result);
 }
 
-
 function getRandomUnqNumber(min, max){
   const generatedNumber = [];
 
   return function(){
     let currentValue = getRandomInteger(min, max);
     if(generatedNumber.length >= (max - min + 1)){
-      console.error('Нет доступных идентификаторов');
+    // console.error('Нет доступных идентификаторов');
 
     }
     while(generatedNumber.includes(currentValue)){
@@ -86,18 +96,35 @@ function getRandomUnqNumber(min, max){
   };
 }
 
-/* Объект image
-   keys:
-   id - уникальное число
-   url - строка "photos/" + уникальное число + ".jpg"
-   description - рандомное из массива DESCRIPTION
-   likes - случайное число от 15 до 200
-   comments - массив объектов кол-во от 0 до 30
-*/
-/* Объект comments
-   keys:
-   id - рандомное уникальное число
-   avatar - строка "img/avatar-" + уникальное число + ".svg"
-   message - 1 или 2 из MESSAGE
-   name случайный из NAME
-*/
+
+function createMessage(){
+  const countMess = getRandomInteger(1,2);
+  let resMess = '';
+  for(let i = 0; i < countMess; i++){
+
+    resMess += `${getRandomArrayElement(MESSAGE)}\n`;
+
+  }
+
+  return resMess;
+}
+//Генерация объектов комментариев
+const createComments = () =>({
+  id: generateCommentId(),
+  avatar: `img/avatar-${ getRandomInteger(1,6) }.svg`,
+  message: createMessage(),
+  neme: getRandomArrayElement(NAME)
+});
+
+//Генерация объектов изображений
+const createImage = () =>({
+  id: generateImgId(),
+  url: `photos/${ generateImgUrlId() }.img`,
+  description: getRandomArrayElement(DESCRIPTION),
+  likes: getRandomInteger(MIN_CNT_LIKE,MAX_CNT_LIKE),
+  comments: Array.from({length: getRandomInteger(0,MAX_COMMMENT)}, createComments)
+
+});
+
+Array.from({length: MAX_ID_IMG}, createImage);
+//const userImage = Array.from({length: MAX_ID_IMG}, createImage);
