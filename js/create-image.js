@@ -31,4 +31,6 @@ const createImage = () =>({
 
 });
 
-export {createImage};
+const createImages = (count) => Array.from({length: count}, createImage);
+
+export {createImages};
