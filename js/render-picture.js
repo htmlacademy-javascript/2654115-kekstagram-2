@@ -1,10 +1,13 @@
 import {createImages} from './create-image.js';
 import {MAX_ID_IMG} from './constant.js';
+import {findTemplate} from './domFunction.js';
+
 const pictureContainer = document.querySelector('.pictures');
-const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
+const pictureTemplate = findTemplate('#picture');
 
 const generatePicture = createImages(MAX_ID_IMG);
 
+const fragment = document.createDocumentFragment();
 generatePicture.forEach(({url, description, likes, comments}) => {
   const pictureElement = pictureTemplate.cloneNode(true);
   const pictureImg = pictureElement.querySelector('.picture__img');
@@ -13,6 +16,7 @@ generatePicture.forEach(({url, description, likes, comments}) => {
   pictureImg.alt = description;
   pictureElement.querySelector('.picture__likes').textContent = likes;
   pictureElement.querySelector('.picture__comments').textContent = comments.length;
+  fragment.appendChild(pictureElement);
 
-  pictureContainer.appendChild(pictureElement);
 });
+pictureContainer.appendChild(fragment);
