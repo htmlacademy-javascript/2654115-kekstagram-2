@@ -3,10 +3,16 @@ import {MAX_ID_IMG} from './constant.js';
 const pictureContainer = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
-
 const generatePicture = createImages(MAX_ID_IMG);
 
-generatePicture.forEach(() => {
+generatePicture.forEach(({url, description, likes, comments}) => {
   const pictureElement = pictureTemplate.cloneNode(true);
+  const pictureImg = pictureElement.querySelector('.picture__img');
+
+  pictureImg.src = url;
+  pictureImg.alt = description;
+  pictureElement.querySelector('.picture__likes').textContent = likes;
+  pictureElement.querySelector('.picture__comments').textContent = comments.length;
+
   pictureContainer.appendChild(pictureElement);
 });
