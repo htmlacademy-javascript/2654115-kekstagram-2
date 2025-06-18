@@ -1,6 +1,6 @@
 import {createImages} from './create-image.js';
 import {MAX_ID_IMG} from './constant.js';
-import {findTemplate, renderFragment} from './util.js';
+import {findTemplate} from './util.js';
 
 const pictureContainer = document.querySelector('.pictures');
 const pictureTemplate = findTemplate('#picture');
@@ -18,5 +18,4 @@ const createPicture = (photo) =>{
   return pictureElement;
 };
 
-
-renderFragment(generatePicture, createPicture, pictureContainer);
+export {pictureContainer, createPicture, generatePicture};
