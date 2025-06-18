@@ -1,13 +1,10 @@
 const findTemplate = (template) =>{
-
-  const tempEl = '#';
-  const index = template.indexOf(tempEl);
   let getTemplate;
 
-  if(index === 0){
+  if(template.indexOf('#') === 0){
     getTemplate = document.querySelector(template);
   } else{
-    getTemplate = document.getElementById(template);
+    throw new Error('Invalid tamplate format');
   }
   if(!getTemplate){
     throw new Error(`Template not found: ${getTemplate}`);
