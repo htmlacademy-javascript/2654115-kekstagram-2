@@ -1,5 +1,4 @@
-import {createImage} from './create-image.js';
-import {MAX_ID_IMG} from './constant.js';
+import {renderFragment} from './util.js';
+import {pictureContainer, createPicture,generatePicture} from './render-picture.js';
 
-Array.from({length: MAX_ID_IMG}, createImage);
-//const userImage = Array.from({length: MAX_ID_IMG}, createImage);
+renderFragment(generatePicture, createPicture, pictureContainer);

@@ -24,11 +24,13 @@ const createComments = () =>({
 //Генерация объектов изображений
 const createImage = () =>({
   id: generateImgId(),
-  url: `photos/${ generateImgUrlId() }.img`,
+  url: `photos/${ generateImgUrlId() }.jpg`,
   description: getRandomArrayElement(DESCRIPTION),
   likes: getRandomInteger(MIN_CNT_LIKE,MAX_CNT_LIKE),
   comments: Array.from({length: getRandomInteger(0,MAX_COMMMENT)}, createComments)
 
 });
 
-export {createImage};
+const createImages = (count) => Array.from({length: count}, createImage);
+
+export {createImages};
