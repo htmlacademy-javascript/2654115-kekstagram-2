@@ -1,5 +1,7 @@
 /*Действия с окном большого изображения. */
 import { pictureContainer } from "./render-picture";
+import { isEscape } from "./util";
+import { generatePicture } from "./render-picture";
 const bigPicture = document.querySelector('.big-picture');
 const closeButtonBigPicture = bigPicture.querySelector('.big-picture__cancel');
 
@@ -7,37 +9,41 @@ pictureContainer.addEventListener('click', (evt) => {
 
   const dataPicture = evt.target.closest('.picture');
   if(dataPicture){
-    openBigPicture(dataPicture);
+    console.log(dataPicture.dataset.pictureId);
+    //openBigPicture(dataPicture.dataset.pictureId);
   }
 
 
 })
 
-const onBigPictureKyedownEsc = () =>{
+const onBigPictureKyedownEsc = (evt) =>{
 //функция обработчик нажатия на esc
+   if(isEscape(evt)){
+    closeBigPicture();
+   }
 
 }
 
 
-const openBigPicture = (picture) =>{
-//удалить класс hidden
+const openBigPicture = (pictureId) =>{
 bigPicture.classList.remove('hidden');
-//добавить обработчик нажатия на esc
+document.addEventListener('keydown', onBigPictureKyedownEsc);
 //остальная логика
-
+const currPicture = generatePicture.find((elem) => elem.id == pictureId);
+//console.log(currPicture);
 };
 
 const closeBigPicture = () =>{
-//добавить класс hidden
 bigPicture.classList.add('hidden');
-//удалить обработчик нажатия на esc
+document.removeEventListener('keydown', onBigPictureKyedownEsc);
 
 };
 
 closeButtonBigPicture.addEventListener('click', closeBigPicture);
 
-const renderBigPicture = () =>{
+const renderBigPicture = (picture) =>{
 //подставить значение полученой картинки в класс bidpictures
+
 
 
 }

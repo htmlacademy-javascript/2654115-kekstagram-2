@@ -11,6 +11,7 @@ const createPicture = (photo) =>{
   const pictureElement = pictureTemplate.cloneNode(true);
   const pictureImg = pictureElement.querySelector('.picture__img');
 
+  pictureImg.dataset.pictureId = photo.id;
   pictureImg.src = photo.url;
   pictureImg.alt = photo.description;
   pictureElement.querySelector('.picture__likes').textContent = photo.likes;

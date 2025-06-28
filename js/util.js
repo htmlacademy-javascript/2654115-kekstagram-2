@@ -14,5 +14,9 @@ const renderFragment = (items, makeElement, container) =>{
   container.append(fragment);
 };
 
+const isEscape = (evt) =>{
+  return evt.key === 'Escape';
+}
 
-export {findTemplate, renderFragment};
+
+export {findTemplate, renderFragment, isEscape};
