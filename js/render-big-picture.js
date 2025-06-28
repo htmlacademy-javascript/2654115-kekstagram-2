@@ -9,8 +9,8 @@ pictureContainer.addEventListener('click', (evt) => {
 
   const dataPicture = evt.target.closest('.picture');
   if(dataPicture){
-    console.log(dataPicture.dataset.pictureId);
-    //openBigPicture(dataPicture.dataset.pictureId);
+    //console.log(dataPicture.dataset.pictureId);
+    openBigPicture(dataPicture.dataset.pictureId);
   }
 
 
