@@ -10,6 +10,7 @@ const findTemplate = (template) =>{
 
 const renderFragment = (items, makeElement, container) =>{
   const fragment = document.createDocumentFragment();
+
   items.forEach((item) => fragment.append(makeElement(item)));
   container.append(fragment);
 };
