@@ -1,17 +1,11 @@
 const findTemplate = (template) =>{
-  let getTemplate;
+  let getTemplate = document.querySelector(template);
 
-  if(template.indexOf('#') === 0){
-    getTemplate = document.querySelector(template);
-  } else{
-    throw new Error('Invalid tamplate format');
-  }
-  if(!getTemplate){
+  if(!getTemplate) {
     throw new Error(`Template not found: ${getTemplate}`);
   }
 
   return getTemplate.content.firstElementChild;
-
 };
 
 const renderFragment = (items, makeElement, container) =>{
