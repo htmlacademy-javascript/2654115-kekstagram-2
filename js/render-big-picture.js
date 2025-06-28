@@ -29,7 +29,7 @@ const openBigPicture = (pictureId) =>{
 bigPicture.classList.remove('hidden');
 document.addEventListener('keydown', onBigPictureKyedownEsc);
 //остальная логика
-const currPicture = generatePicture.find((elem) => elem.id == pictureId);
+const currPicture = generatePicture.find((elem) => elem.id === pictureId);
 //console.log(currPicture);
 };
 
