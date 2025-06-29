@@ -1,24 +1,23 @@
 const findTemplate = (template) =>{
-  let getTemplate;
+  let getTemplate = document.querySelector(template);
 
-  if(template.indexOf('#') === 0){
-    getTemplate = document.querySelector(template);
-  } else{
-    throw new Error('Invalid tamplate format');
-  }
-  if(!getTemplate){
+  if(!getTemplate) {
     throw new Error(`Template not found: ${getTemplate}`);
   }
 
   return getTemplate.content.firstElementChild;
-
 };
 
 const renderFragment = (items, makeElement, container) =>{
   const fragment = document.createDocumentFragment();
+
   items.forEach((item) => fragment.append(makeElement(item)));
   container.append(fragment);
 };
 
+const isEscape = (evt) =>{
+  return evt.key === 'Escape';
+}
 
-export {findTemplate, renderFragment};
+
+export {findTemplate, renderFragment, isEscape};
