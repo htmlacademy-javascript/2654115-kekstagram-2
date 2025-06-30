@@ -19,9 +19,6 @@ const renderComent = (comment)=>{
   return newComment;
 
 }
-const onClickCommentsloader = ()=>{
-   renderNextCommentsPack();
-}
 const renderNextCommentsPack = ()=>{
 
   const currRenderPackComments = massComments.slice(currCountComm, currCountComm + COMMENT_PACK);
@@ -35,6 +32,10 @@ const renderNextCommentsPack = ()=>{
 
 
 }
+const onClickCommentsloader = ()=>{
+   renderNextCommentsPack();
+}
+
 const closeComments = () =>{
 
   currCountComm = 0;
