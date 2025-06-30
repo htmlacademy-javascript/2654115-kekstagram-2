@@ -1,71 +1,24 @@
 /*Действия с окном большого изображения. */
-import { pictureContainer } from "./render-picture";
-import { isEscape, renderFragment } from "./util";
-import { generatePicture } from "./render-picture";
+import { pictureContainer } from './render-picture';
+import { isEscape} from './util';
+import { generatePicture } from './render-picture';
+import { renderComments, closeComments } from './render-comments';
 
 const bigPicture = document.querySelector('.big-picture');
 const closeButtonBigPicture = bigPicture.querySelector('.big-picture__cancel');
-const bigPictureSocialComments = bigPicture.querySelector('.social__comments');
-const comentsTemplate = bigPictureSocialComments.querySelector('.social__comment');
-
-const renderBigPictures = () =>{
-
-  pictureContainer.addEventListener('click', (evt) => {
-
-    const dataPicture = evt.target.closest('.picture');
-    if(dataPicture){
-      openBigPicture(dataPicture.dataset.pictureId);
-    }
-  })
-
-}
-
-
-
-const onBigPictureKyedownEsc = (evt) =>{
-//функция обработчик нажатия на esc
-   if(isEscape(evt)){
-    closeBigPicture();
-   }
-
-}
-
-const hiddenLoadComment = ()=>{
-  bigPicture.querySelector('.social__comment-count').classList.add('hidden');
-  bigPicture.querySelector('.comments-loader').classList.add('hidden');
-}
-
-const openBigPicture = (pictureId) =>{
-  bigPicture.classList.remove('hidden');
-  document.addEventListener('keydown', onBigPictureKyedownEsc);
-  //остальная логика
-  const currPicture = generatePicture.find((elem) => elem.id === Number(pictureId));
-  hiddenLoadComment();
-  renderModalBigPicture(currPicture);
-  document.querySelector('body').classList.add('.modal-open');
-};
 
 const closeBigPicture = () =>{
   bigPicture.classList.add('hidden');
- document.removeEventListener('keydown', onBigPictureKyedownEsc);
+  closeComments();
+  document.removeEventListener('keydown', onBigPictureKyedownEsc);
   document.querySelector('body').classList.remove('.modal-open');
-
 };
 
-closeButtonBigPicture.addEventListener('click', closeBigPicture);
-
-const renderComents = (comment)=>{
-
-  const newComment = comentsTemplate.cloneNode(true);
-  const bigPictureSocialPicture = newComment.querySelector('.social__picture');
-  bigPictureSocialPicture.src = comment.avatar;
-  bigPictureSocialPicture.alt = comment.name;
-  newComment.querySelector('.social__text').textContent = comment.message;
-
-  return newComment;
-
-}
-
+const onBigPictureKyedownEsc = (evt) =>{
+   if(isEscape(evt)){
+    closeBigPicture();
+   }
+};
 
 
 const renderModalBigPicture = (picture) =>{
@@ -76,8 +29,29 @@ const renderModalBigPicture = (picture) =>{
   bigPicture.querySelector('.likes-count').textContent = picture.likes;
 
   bigPicture.querySelector('.social__comment-total-count').textContent = picture.comments.length;
-  bigPictureSocialComments.innerHTML = '';
-  renderFragment(picture.comments, renderComents, bigPictureSocialComments);
-}
+  renderComments(picture.comments);
+};
 
-export {renderBigPictures};
+const openBigPicture = (pictureId) =>{
+  bigPicture.classList.remove('hidden');
+  document.addEventListener('keydown', onBigPictureKyedownEsc);
+
+  const currPicture = generatePicture.find((elem) => elem.id === Number(pictureId));
+  renderModalBigPicture(currPicture);
+  document.querySelector('body').classList.add('.modal-open');
+};
+
+const renderBigPictures = () =>{
+
+  pictureContainer.addEventListener('click', (evt) => {
+
+    const dataPicture = evt.target.closest('.picture');
+    if(dataPicture){
+      openBigPicture(dataPicture.dataset.pictureId);
+    }
+  })
+};
+
+closeButtonBigPicture.addEventListener('click', closeBigPicture);
+
+export {renderBigPictures, bigPicture};
