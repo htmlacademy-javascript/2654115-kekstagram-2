@@ -10,13 +10,13 @@ const comentsTemplate = bigPictureSocialComments.querySelector('.social__comment
 
 const renderBigPictures = () =>{
 
-  pictureContainer.addEventListener('click', (evt) => {
+  const picture = document.querySelectorAll('.picture');
 
-    const dataPicture = evt.target.closest('.picture');
-    if(dataPicture){
-      openBigPicture(dataPicture.dataset.pictureId);
-    }
-  })
+  picture.forEach(image =>
+    image.addEventListener('click', () => {
+      openBigPicture(image.dataset.pictureId);
+    })
+  )
 
 }
 
