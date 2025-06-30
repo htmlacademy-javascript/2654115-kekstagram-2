@@ -42,13 +42,13 @@ const openBigPicture = (pictureId) =>{
   const currPicture = generatePicture.find((elem) => elem.id === Number(pictureId));
   hiddenLoadComment();
   renderModalBigPicture(currPicture);
-  document.querySelector('body').classList.add('.modal-open');
+  document.body.classList.add('modal-open');
 };
 
 const closeBigPicture = () =>{
   bigPicture.classList.add('hidden');
  document.removeEventListener('keydown', onBigPictureKyedownEsc);
-  document.querySelector('body').classList.remove('.modal-open');
+  document.body.classList.remove('modal-open');
 
 };
 
