@@ -1,8 +1,8 @@
-const findTemplate = (template) =>{
-  let getTemplate = document.querySelector(template);
+const findTemplate = (template) => {
+  const getTemplate = document.querySelector(template);
 
-  if(!getTemplate) {
-    throw new Error(`Template not found: ${getTemplate}`);
+  if (!getTemplate) {
+    throw new Error(`Template not found: ${template}`);
   }
 
   return getTemplate.content.firstElementChild;
@@ -17,7 +17,7 @@ const renderFragment = (items, makeElement, container) =>{
 
 const isEscape = (evt) =>{
   return evt.key === 'Escape';
-}
+};
 
 
 export {findTemplate, renderFragment, isEscape};

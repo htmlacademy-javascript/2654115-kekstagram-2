@@ -23,7 +23,7 @@ const renderNextCommentsPack = ()=>{
 
   const currRenderPackComments = massComments.slice(currCountComm, currCountComm + COMMENT_PACK);
   renderFragment(currRenderPackComments, renderComent, bigPictureSocialComments);
-  currCountComm +=currRenderPackComments.length;
+  currCountComm += currRenderPackComments.length;
   bigPicture.querySelector('.social__comment-shown-count').textContent = currCountComm;
   if(currCountComm === massComments.length){
     commentsLoader.classList.add('hidden');

@@ -7,18 +7,19 @@ import { renderComments, closeComments } from './render-comments';
 const bigPicture = document.querySelector('.big-picture');
 const closeButtonBigPicture = bigPicture.querySelector('.big-picture__cancel');
 
-const onBigPictureKyedownEsc = (evt) =>{
-   if(isEscape(evt)){
-    closeBigPicture();
-   }
-};
-
 const closeBigPicture = () =>{
   bigPicture.classList.add('hidden');
   closeComments();
   document.removeEventListener('keydown', onBigPictureKyedownEsc);
   document.querySelector('body').classList.remove('.modal-open');
 };
+
+const onBigPictureKyedownEsc = (evt) =>{
+   if(isEscape(evt)){
+    closeBigPicture();
+   }
+};
+
 
 const renderModalBigPicture = (picture) =>{
   const bigPictureImg = bigPicture.querySelector('.big-picture__img img');
