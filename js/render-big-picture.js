@@ -8,13 +8,10 @@ const bigPicture = document.querySelector('.big-picture');
 const closeButtonBigPicture = bigPicture.querySelector('.big-picture__cancel');
 
 const closeBigPicture = () =>{
-    const picture = document.querySelectorAll('.picture');
-
-  picture.forEach(image =>
-    image.addEventListener('click', () => {
-      openBigPicture(image.dataset.pictureId);
-    })
-  )
+  bigPicture.classList.add('hidden');
+  closeComments();
+  document.removeEventListener('keydown', onBigPictureKyedownEsc);
+  document.querySelector('body').classList.remove('.modal-open');
 };
 
 const onBigPictureKyedownEsc = (evt) =>{
@@ -46,13 +43,14 @@ const openBigPicture = (pictureId) =>{
 
 const renderBigPictures = () =>{
 
-  pictureContainer.addEventListener('click', (evt) => {
+  const picture = document.querySelectorAll('.picture');
 
-    const dataPicture = evt.target.closest('.picture');
-    if(dataPicture){
-      openBigPicture(dataPicture.dataset.pictureId);
-    }
-  })
+  picture.forEach(image =>
+    image.addEventListener('click', () => {
+      openBigPicture(image.dataset.pictureId);
+    })
+  )
+
 };
 
 closeButtonBigPicture.addEventListener('click', closeBigPicture);
