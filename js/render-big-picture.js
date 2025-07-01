@@ -8,10 +8,13 @@ const bigPicture = document.querySelector('.big-picture');
 const closeButtonBigPicture = bigPicture.querySelector('.big-picture__cancel');
 
 const closeBigPicture = () =>{
-  bigPicture.classList.add('hidden');
-  closeComments();
-  document.removeEventListener('keydown', onBigPictureKyedownEsc);
-  document.querySelector('body').classList.remove('.modal-open');
+    const picture = document.querySelectorAll('.picture');
+
+  picture.forEach(image =>
+    image.addEventListener('click', () => {
+      openBigPicture(image.dataset.pictureId);
+    })
+  )
 };
 
 const onBigPictureKyedownEsc = (evt) =>{
