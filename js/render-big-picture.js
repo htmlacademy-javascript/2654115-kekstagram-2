@@ -1,5 +1,4 @@
 /*Действия с окном большого изображения. */
-import { pictureContainer } from './render-picture';
 import { isEscape} from './util';
 import { generatePicture } from './render-picture';
 import { renderComments, closeComments } from './render-comments';
