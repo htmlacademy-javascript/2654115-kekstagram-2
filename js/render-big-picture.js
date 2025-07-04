@@ -10,7 +10,7 @@ const closeBigPicture = () =>{
   bigPicture.classList.add('hidden');
   closeComments();
   document.removeEventListener('keydown', onBigPictureKyedownEsc);
-  document.querySelector('body').classList.remove('.modal-open');
+  document.body.classList.remove('modal-open');
 };
 
 const onBigPictureKyedownEsc = (evt) =>{
@@ -37,7 +37,7 @@ const openBigPicture = (pictureId) =>{
 
   const currPicture = generatePicture.find((elem) => elem.id === Number(pictureId));
   renderModalBigPicture(currPicture);
-  document.querySelector('body').classList.add('.modal-open');
+  document.body.classList.add('modal-open');
 };
 
 const renderBigPictures = () =>{
