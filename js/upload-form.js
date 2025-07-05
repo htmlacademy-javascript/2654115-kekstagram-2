@@ -1,13 +1,18 @@
+
 import { isEscape} from './util';
+
+import { isValidComment ,isValidHastag,erorrString, commentsgInput, hashtagInput} from './validation';
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadFile = uploadForm.querySelector('.img-upload__input');
 const oploadFormModal = uploadForm.querySelector('.img-upload__overlay');
 const closeForm = uploadForm.querySelector('.img-upload__cancel');
 const uploadSubmit = uploadForm.querySelector('.img-upload__submit');
-const hashtag = uploadForm.querySelector('.text__hashtags');
+
+
+
 
 const onUploadFormKyedownEsc = (evt) =>{
-   if(isEscape(evt)){
+   if(isEscape(evt) && evt.target != hashtagInput && evt.target != commentsgInput){
     closeUploadForm();
    }
 };
@@ -20,7 +25,7 @@ const openUploadForm = () =>{
 
 
 
-const closeUploadForm = () =>{
+function closeUploadForm (){
   oploadFormModal.classList.add('hidden');
   document.removeEventListener('keydown', onUploadFormKyedownEsc);
   uploadForm.value = '';
@@ -40,20 +45,31 @@ const initUpload = () => {
   uploadFile.addEventListener('change', onClickUploadFile);
 }
 
+const pristine = new Pristine(uploadForm,{
+  classTo: 'img-upload__field-wrapper',
+  errorTextParent: 'img-upload__field-wrapper',
+  errorTextClass: 'img-upload__field-wrapper--error',
 
-uploadSubmit.addEventListener('click', (evt)=>{
-  evt.defaultPrevented();
-  console.log('click');
-  alert('click');
+});
 
-})
+pristine.addValidator(hashtagInput, isValidHastag, erorrString);
 
-const pristine = new Pristine(uploadForm);
 
-pristine.addValidator(hashtag, (value)=>{
-  const hastagNum = /\d/.test(value);
-  return !hastagNum;
+pristine.addValidator(commentsgInput, isValidComment, "Комментарий не должен превышать 140 символов");
 
-}, 'Ошибка');
+uploadSubmit.addEventListener('submit', async (evt)=>{
+
+  evt.preventDefault();
+  if(pristine.validate()){
+   hashtagInput.value = hashtagInput.value.trim().replaceAll(/\s+/g, ' ');
+   uploadSubmit.submit();
+
+  }
+
+});
+
+
+
+
 
 export {initUpload}
