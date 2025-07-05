@@ -21,17 +21,18 @@ const erorrString = () => messageErrorHastag;
 
 const isValidHastag = () =>{
 
+    if(hashtagInput.value != 0){
+      const hashtags = hashtagInput.value.toLowerCase().trim().split(/\s+/);
+      const uniqueHashtags = new Set();
+      messageErrorHastag = '';
 
-    const hashtags = hashtagInput.value.toLowerCase().trim().split(/\s+/);
-    const uniqueHashtags = new Set();
-    messageErrorHastag = '';
 
-    if (hashtags.length > MAX_HASHTAG) {
+      if (hashtags.length > MAX_HASHTAG) {
       messageErrorHastag =`Не может быть больше ${MAX_HASHTAG} хэштегов.`;
       return false;
-    }
+      }
 
-    for (const tag of hashtags) {
+      for (const tag of hashtags) {
         // Проверка на корректный формат
         if(tag.length === 1 && tag[0]==='#'){
           messageErrorHastag ='Хештег не может состоять из одного символа #';
@@ -55,6 +56,8 @@ const isValidHastag = () =>{
         }
 
         uniqueHashtags.add(tag);
+     }
+
     }
 
     return true;

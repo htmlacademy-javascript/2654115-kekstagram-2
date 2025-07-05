@@ -41,10 +41,6 @@ const onClickUploadFile = () => {
 
 };
 
-const initUpload = () => {
-  uploadFile.addEventListener('change', onClickUploadFile);
-}
-
 const pristine = new Pristine(uploadForm,{
   classTo: 'img-upload__field-wrapper',
   errorTextParent: 'img-upload__field-wrapper',
@@ -57,16 +53,22 @@ pristine.addValidator(hashtagInput, isValidHastag, erorrString);
 
 pristine.addValidator(commentsgInput, isValidComment, "Комментарий не должен превышать 140 символов");
 
-uploadSubmit.addEventListener('submit', async (evt)=>{
-
-  evt.preventDefault();
-  if(pristine.validate()){
-   hashtagInput.value = hashtagInput.value.trim().replaceAll(/\s+/g, ' ');
-   uploadSubmit.submit();
+const initUpload = () => {
+  uploadFile.addEventListener('change', onClickUploadFile);
+  uploadSubmit.addEventListener('click', (evt)=>{
+     evt.preventDefault();
+     if(pristine.validate()){
+     hashtagInput.value = hashtagInput.value.trim().replaceAll(/\s+/g, '');
+     uploadForm.submit();
 
   }
 
 });
+}
+
+
+
+
 
 
 
