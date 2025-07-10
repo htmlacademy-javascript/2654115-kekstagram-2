@@ -1,26 +1,26 @@
 /*Действия с окном большого изображения. */
-import { isEscape} from './util';
+import { isEscape } from './util';
 import { generatePicture } from './render-picture';
 import { renderComments, closeComments } from './render-comments';
 
 const bigPicture = document.querySelector('.big-picture');
 const closeButtonBigPicture = bigPicture.querySelector('.big-picture__cancel');
 
-const closeBigPicture = () =>{
+const closeBigPicture = () => {
   bigPicture.classList.add('hidden');
   closeComments();
   document.removeEventListener('keydown', onBigPictureFormKyedownEsc);
   document.body.classList.remove('modal-open');
 };
 
-const onBigPictureFormKyedownEsc = (evt) =>{
-   if(isEscape(evt)){
+const onBigPictureFormKyedownEsc = (evt) => {
+  if (isEscape(evt)) {
     closeBigPicture();
-   }
+  }
 };
 
 
-const renderModalBigPicture = (picture) =>{
+const renderModalBigPicture = (picture) => {
   const bigPictureImg = bigPicture.querySelector('.big-picture__img img');
   bigPictureImg.src = picture.url;
   bigPictureImg.alt = picture.description;
@@ -31,7 +31,7 @@ const renderModalBigPicture = (picture) =>{
   renderComments(picture.comments);
 };
 
-const openBigPicture = (pictureId) =>{
+const openBigPicture = (pictureId) => {
   bigPicture.classList.remove('hidden');
   document.addEventListener('keydown', onBigPictureFormKyedownEsc);
 
@@ -40,7 +40,7 @@ const openBigPicture = (pictureId) =>{
   document.body.classList.add('modal-open');
 };
 
-const renderBigPictures = () =>{
+const renderBigPictures = () => {
 
   const picture = document.querySelectorAll('.picture');
 
@@ -54,4 +54,4 @@ const renderBigPictures = () =>{
 
 closeButtonBigPicture.addEventListener('click', closeBigPicture);
 
-export {renderBigPictures, bigPicture};
+export { renderBigPictures, bigPicture };

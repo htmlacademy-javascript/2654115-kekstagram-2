@@ -33,55 +33,55 @@ const isValidComment = () => commentsgInput.value.length < VALIDATION_RULES.MAX_
 let messageErrorHastag = '';
 const erorrString = () => messageErrorHastag;
 
-const isValidHastag = () =>{
+const isValidHastag = () => {
 
-    if(hashtagInput.value != 0){
-      const hashtags = hashtagInput.value.toLowerCase().trim().split(/\s+/);
-      const uniqueHashtags = new Set();
-      const regularExHashtag = /^#([а-яёa-z0-9]){1,19}$/i;
-      messageErrorHastag = '';
+  if (hashtagInput.value != 0) {
+    const hashtags = hashtagInput.value.toLowerCase().trim().split(/\s+/);
+    const uniqueHashtags = new Set();
+    const regularExHashtag = /^#([а-яёa-z0-9]){1,19}$/i;
+    messageErrorHastag = '';
 
 
-      if (hashtags.length > VALIDATION_RULES.MAX_HASHTAG) {
+    if (hashtags.length > VALIDATION_RULES.MAX_HASHTAG) {
       messageErrorHastag = ERROR_MESSAGES.HASHTAGS.TOO_MANY;
       return false;
-      }
-
-      for (const tag of hashtags) {
-        // Проверка на корректный формат
-        if(tag.length === 1 && tag[0]==='#'){
-          messageErrorHastag = ERROR_MESSAGES.HASHTAGS.ONLY_HASH;
-          return false;
-        }
-        if(tag[0] != '#'){
-          messageErrorHastag = ERROR_MESSAGES.HASHTAGS.MUST_START_WITH_HASH;
-          return false;
-        }
-        if(tag.length > VALIDATION_RULES.MAX_LENGTH_HASHTAG){
-          messageErrorHastag = ERROR_MESSAGES.HASHTAGS.TOO_LONG;
-          return false;
-        }
-        if(tag.split('#').length >2){
-          messageErrorHastag = ERROR_MESSAGES.HASHTAGS.BY_SPACE;
-          return false;
-        }
-        if (!regularExHashtag.test(tag)) {
-          messageErrorHastag = ERROR_MESSAGES.HASHTAGS.INVALID_CHARACTERS;
-          return false;
-        }
-        if (uniqueHashtags.has(tag)) {
-          messageErrorHastag = ERROR_MESSAGES.HASHTAGS.NOT_UNIQUE;
-          return false;
-        }
-
-        uniqueHashtags.add(tag);
-     }
-
     }
 
-    return true;
+    for (const tag of hashtags) {
+      // Проверка на корректный формат
+      if (tag.length === 1 && tag[0] === '#') {
+        messageErrorHastag = ERROR_MESSAGES.HASHTAGS.ONLY_HASH;
+        return false;
+      }
+      if (tag[0] != '#') {
+        messageErrorHastag = ERROR_MESSAGES.HASHTAGS.MUST_START_WITH_HASH;
+        return false;
+      }
+      if (tag.length > VALIDATION_RULES.MAX_LENGTH_HASHTAG) {
+        messageErrorHastag = ERROR_MESSAGES.HASHTAGS.TOO_LONG;
+        return false;
+      }
+      if (tag.split('#').length > 2) {
+        messageErrorHastag = ERROR_MESSAGES.HASHTAGS.BY_SPACE;
+        return false;
+      }
+      if (!regularExHashtag.test(tag)) {
+        messageErrorHastag = ERROR_MESSAGES.HASHTAGS.INVALID_CHARACTERS;
+        return false;
+      }
+      if (uniqueHashtags.has(tag)) {
+        messageErrorHastag = ERROR_MESSAGES.HASHTAGS.NOT_UNIQUE;
+        return false;
+      }
+
+      uniqueHashtags.add(tag);
+    }
+
+  }
+
+  return true;
 
 }
 
 
-export {isValidComment,isValidHastag, erorrString, commentsgInput, hashtagInput}
+export { isValidComment, isValidHastag, erorrString, commentsgInput, hashtagInput }
