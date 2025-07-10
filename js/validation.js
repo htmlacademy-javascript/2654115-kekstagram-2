@@ -1,11 +1,12 @@
 //Файл валидации хештегов и комментариев
+const MAX_LENGTH_COMMENT = 140;
+const MAX_HASHTAG = 5;
+const MAX_LENGTH_HASHTAG = 20;
 
 const uploadForm = document.querySelector('.img-upload__form');
 const commentsgInput = uploadForm.querySelector('.text__description');
 const hashtagInput = uploadForm.querySelector('.text__hashtags');
-const MAX_LENGTH_COMMENT = 140;
-const MAX_HASHTAG = 5;
-const MAX_LENGTH_HASHTAG = 20;
+
 
 const isValidComment = () =>{
 
@@ -46,7 +47,7 @@ const isValidHastag = () =>{
           messageErrorHastag ='Слишком длинный хештег';
           return false;
         }
-        if (!/^#([а-яёa-z0-9])$/.test(tag)) {
+        if (!/^#([а-яёa-z0-9]){1,19}$/i.test(tag)) {
           messageErrorHastag ='Хештег содержит запрещенные символы';
           return false;
         }
