@@ -28,14 +28,7 @@ const commentsgInput = uploadForm.querySelector('.text__description');
 const hashtagInput = uploadForm.querySelector('.text__hashtags');
 
 
-const isValidComment = () =>{
-
-    if(commentsgInput.value.length > VALIDATION_RULES.MAX_LENGTH_COMMENT){
-      return false;
-    }
-    return true;
-
-}
+const isValidComment = () => commentsgInput.value.length < VALIDATION_RULES.MAX_LENGTH_COMMENT;
 
 let messageErrorHastag = '';
 const erorrString = () => messageErrorHastag;
