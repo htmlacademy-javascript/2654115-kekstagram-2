@@ -1,27 +1,26 @@
 /*Действия с окном большого изображения. */
-import { pictureContainer } from './render-picture';
-import { isEscape} from './util';
+import { isEscape } from './util';
 import { generatePicture } from './render-picture';
 import { renderComments, closeComments } from './render-comments';
 
 const bigPicture = document.querySelector('.big-picture');
 const closeButtonBigPicture = bigPicture.querySelector('.big-picture__cancel');
 
-const closeBigPicture = () =>{
+const closeBigPicture = () => {
   bigPicture.classList.add('hidden');
   closeComments();
-  document.removeEventListener('keydown', onBigPictureKyedownEsc);
-  document.querySelector('body').classList.remove('.modal-open');
+  document.removeEventListener('keydown', onBigPictureFormKyedownEsc);
+  document.body.classList.remove('modal-open');
 };
 
-const onBigPictureKyedownEsc = (evt) =>{
-   if(isEscape(evt)){
+const onBigPictureFormKyedownEsc = (evt) => {
+  if (isEscape(evt)) {
     closeBigPicture();
-   }
+  }
 };
 
 
-const renderModalBigPicture = (picture) =>{
+const renderModalBigPicture = (picture) => {
   const bigPictureImg = bigPicture.querySelector('.big-picture__img img');
   bigPictureImg.src = picture.url;
   bigPictureImg.alt = picture.description;
@@ -32,26 +31,27 @@ const renderModalBigPicture = (picture) =>{
   renderComments(picture.comments);
 };
 
-const openBigPicture = (pictureId) =>{
+const openBigPicture = (pictureId) => {
   bigPicture.classList.remove('hidden');
-  document.addEventListener('keydown', onBigPictureKyedownEsc);
+  document.addEventListener('keydown', onBigPictureFormKyedownEsc);
 
   const currPicture = generatePicture.find((elem) => elem.id === Number(pictureId));
   renderModalBigPicture(currPicture);
-  document.querySelector('body').classList.add('.modal-open');
+  document.body.classList.add('modal-open');
 };
 
-const renderBigPictures = () =>{
+const renderBigPictures = () => {
 
-  pictureContainer.addEventListener('click', (evt) => {
+  const picture = document.querySelectorAll('.picture');
 
-    const dataPicture = evt.target.closest('.picture');
-    if(dataPicture){
-      openBigPicture(dataPicture.dataset.pictureId);
-    }
-  })
+  picture.forEach(image =>
+    image.addEventListener('click', () => {
+      openBigPicture(image.dataset.pictureId);
+    })
+  )
+
 };
 
 closeButtonBigPicture.addEventListener('click', closeBigPicture);
 
-export {renderBigPictures, bigPicture};
+export { renderBigPictures, bigPicture };

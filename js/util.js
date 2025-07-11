@@ -8,16 +8,16 @@ const findTemplate = (template) => {
   return getTemplate.content.firstElementChild;
 };
 
-const renderFragment = (items, makeElement, container) =>{
+const renderFragment = (items, makeElement, container) => {
   const fragment = document.createDocumentFragment();
 
   items.forEach((item) => fragment.append(makeElement(item)));
   container.append(fragment);
 };
 
-const isEscape = (evt) =>{
+const isEscape = (evt) => {
   return evt.key === 'Escape';
 };
 
 
-export {findTemplate, renderFragment, isEscape};
+export { findTemplate, renderFragment, isEscape };
