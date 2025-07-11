@@ -9,11 +9,11 @@ const closeButtonBigPicture = bigPicture.querySelector('.big-picture__cancel');
 const closeBigPicture = () => {
   bigPicture.classList.add('hidden');
   closeComments();
-  document.removeEventListener('keydown', onBigPictureFormKyedownEsc);
+  document.removeEventListener('keydown', onBigPictureFormKeydownEsc);
   document.body.classList.remove('modal-open');
 };
 
-const onBigPictureFormKyedownEsc = (evt) => {
+const onBigPictureFormKeydownEsc = (evt) => {
   if (isEscape(evt)) {
     closeBigPicture();
   }
@@ -33,7 +33,7 @@ const renderModalBigPicture = (picture) => {
 
 const openBigPicture = (pictureId) => {
   bigPicture.classList.remove('hidden');
-  document.addEventListener('keydown', onBigPictureFormKyedownEsc);
+  document.addEventListener('keydown', onBigPictureFormKeydownEsc);
 
   const currPicture = generatePicture.find((elem) => elem.id === Number(pictureId));
   renderModalBigPicture(currPicture);

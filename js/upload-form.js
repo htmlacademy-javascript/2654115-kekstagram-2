@@ -12,7 +12,7 @@ const uploadSubmit = uploadForm.querySelector('.img-upload__submit');
 
 
 const onUploadFormKyedownEsc = (evt) => {
-  if (isEscape(evt) && evt.target != hashtagInput && evt.target != commentsgInput) {
+  if (isEscape(evt) && ![hashtagInput, commentsgInput].includes(evt.target)) {
     closeUploadForm();
   }
 };

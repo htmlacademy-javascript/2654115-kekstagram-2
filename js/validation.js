@@ -24,11 +24,11 @@ const ERROR_MESSAGES = {
 
 
 const uploadForm = document.querySelector('.img-upload__form');
-const commentsgInput = uploadForm.querySelector('.text__description');
+const commentsInput = uploadForm.querySelector('.text__description');
 const hashtagInput = uploadForm.querySelector('.text__hashtags');
 
 
-const isValidComment = () => commentsgInput.value.length < VALIDATION_RULES.MAX_LENGTH_COMMENT;
+const isValidComment = () => commentsInput.value.length < VALIDATION_RULES.MAX_LENGTH_COMMENT;
 
 let messageErrorHastag = '';
 const erorrString = () => messageErrorHastag;
@@ -84,4 +84,4 @@ const isValidHastag = () => {
 }
 
 
-export { isValidComment, isValidHastag, erorrString, commentsgInput, hashtagInput }
+export { isValidComment, isValidHastag, erorrString, commentsInput as commentsgInput, hashtagInput }
