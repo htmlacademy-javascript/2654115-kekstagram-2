@@ -1,6 +1,6 @@
 
 import { isEscape } from './util';
-
+import { uploadOverlay, smaller,bigger, onButtonSmallerClick, onButtonBiggerClick } from './img-effects';
 import { isValidComment, isValidHastag, erorrString, commentsgInput, hashtagInput } from './validation';
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadFile = uploadForm.querySelector('.img-upload__input');
@@ -19,6 +19,8 @@ const onUploadFormKyedownEsc = (evt) => {
 
 const openUploadForm = () => {
   oploadFormModal.classList.remove('hidden');
+  uploadOverlay.classList.remove('hidden');
+
   document.addEventListener('keydown', onUploadFormKyedownEsc);
   document.body.classList.add('modal-open');
 }
@@ -27,6 +29,8 @@ const openUploadForm = () => {
 
 function closeUploadForm() {
   oploadFormModal.classList.add('hidden');
+  uploadOverlay.classList.add('hidden');
+
   document.removeEventListener('keydown', onUploadFormKyedownEsc);
   uploadForm.value = '';
   document.body.classList.remove('modal-open');
@@ -58,12 +62,15 @@ const initUpload = () => {
   uploadSubmit.addEventListener('click', (evt) => {
     evt.preventDefault();
     if (pristine.validate()) {
-      hashtagInput.value = hashtagInput.value.trim().replaceAll(/\s+/g, '');
+      hashtagInput.value = hashtagInput.value.trim().replaceAll(/\s+/g, ' ');
       uploadForm.submit();
 
     }
 
   });
 }
+
+smaller.addEventListener('click', onButtonSmallerClick);
+bigger.addEventListener('click', onButtonBiggerClick);
 
 export { initUpload }
