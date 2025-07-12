@@ -134,4 +134,4 @@ const updateEffect = () => {
   radioBtn.forEach((radio) => radio.addEventListener('click', onEffectButtonClick));
 };
 
-export { initSlider, updateEffect }
+export { initSlider, updateEffect, resetSlider }

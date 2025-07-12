@@ -2,7 +2,7 @@
 import { isEscape } from './util';
 import {smaller, bigger, onButtonSmallerClick, onButtonBiggerClick} from './scale';
 import { isValidComment, isValidHastag, erorrString, commentsgInput, hashtagInput } from './validation';
-import { initSlider, updateEffect } from './slider';
+import { initSlider, updateEffect, resetSlider } from './slider';
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadFile = uploadForm.querySelector('.img-upload__input');
 const oploadFormModal = uploadForm.querySelector('.img-upload__overlay');
@@ -33,6 +33,7 @@ function closeUploadForm() {
   document.removeEventListener('keydown', onUploadFormKyedownEsc);
   uploadForm.value = '';
   document.body.classList.remove('modal-open');
+  resetSlider();
 };
 
 
