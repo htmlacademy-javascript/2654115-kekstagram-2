@@ -110,7 +110,7 @@ slider.noUiSlider.on('update', () => {
   }
 });
 
-function onEffectItemClick() {
+function onEffectButtonClick() {
   currentEffect = effects.find((effect) => effect.name === this.value);
   if (currentEffect.name === 'none') {
     resetSlider();
@@ -131,7 +131,7 @@ const resetSlider = () => {
 
 const updateEffect = () => {
 
-  radioBtn.forEach((radio) => radio.addEventListener('click', onEffectItemClick));
+  radioBtn.forEach((radio) => radio.addEventListener('click', onEffectButtonClick));
 };
 
 export { initSlider, updateEffect }
