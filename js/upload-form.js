@@ -1,15 +1,14 @@
 
 import { isEscape } from './util';
-import { uploadOverlay, smaller,bigger, onButtonSmallerClick, onButtonBiggerClick } from './img-effects';
+import {smaller, bigger, onButtonSmallerClick, onButtonBiggerClick} from './scale';
 import { isValidComment, isValidHastag, erorrString, commentsgInput, hashtagInput } from './validation';
+import { initSlider, updateEffect } from './slider';
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadFile = uploadForm.querySelector('.img-upload__input');
 const oploadFormModal = uploadForm.querySelector('.img-upload__overlay');
 const closeForm = uploadForm.querySelector('.img-upload__cancel');
 const uploadSubmit = uploadForm.querySelector('.img-upload__submit');
-
-
-
+const uploadOverlay = document.querySelector('.img-upload__overlay');
 
 const onUploadFormKyedownEsc = (evt) => {
   if (isEscape(evt) && ![hashtagInput, commentsgInput].includes(evt.target)) {
@@ -58,6 +57,8 @@ pristine.addValidator(hashtagInput, isValidHastag, erorrString);
 pristine.addValidator(commentsgInput, isValidComment, "Комментарий не должен превышать 140 символов");
 
 const initUpload = () => {
+  initSlider();
+  updateEffect();
   uploadFile.addEventListener('change', onClickUploadFile);
   uploadSubmit.addEventListener('click', (evt) => {
     evt.preventDefault();
@@ -68,6 +69,7 @@ const initUpload = () => {
     }
 
   });
+
 }
 
 smaller.addEventListener('click', onButtonSmallerClick);
