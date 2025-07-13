@@ -45,7 +45,7 @@ const effects = [
         min: 0,
         max: 100
       },
-      start: 1,
+      start: 100,
       step: 1
     },
     setPrewFill: 'effects__preview--marvin',
