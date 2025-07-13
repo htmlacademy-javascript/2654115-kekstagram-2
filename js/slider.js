@@ -6,7 +6,7 @@ const effects = [
         min: 0,
         max: 1
       },
-      start: 0,
+      start: 1,
       step: 0.1
     },
     setPrewFill: 'effects__preview--none',
@@ -19,7 +19,7 @@ const effects = [
         min: 0,
         max: 1
       },
-      start: 0,
+      start: 1,
       step: 0.1
     },
     setPrewFill: 'effects__preview--chrome',
@@ -32,7 +32,7 @@ const effects = [
         min: 0,
         max: 1
       },
-      start: 0,
+      start: 1,
       step: 0.1
     },
     setPrewFill: 'effects__preview--sepia',
@@ -45,7 +45,7 @@ const effects = [
         min: 0,
         max: 100
       },
-      start: 0,
+      start: 1,
       step: 1
     },
     setPrewFill: 'effects__preview--marvin',
@@ -58,7 +58,7 @@ const effects = [
         min: 0,
         max: 3
       },
-      start: 0,
+      start: 3,
       step: 0.1
     },
     setPrewFill: 'effects__preview--phobos',
@@ -71,7 +71,7 @@ const effects = [
         min: 1,
         max: 3
       },
-      start: 1,
+      start: 3,
       step: 0.1
     },
     setPrewFill: 'effects__preview--heat',
