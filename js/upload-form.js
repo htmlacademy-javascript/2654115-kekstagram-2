@@ -1,14 +1,14 @@
 
 import { isEscape } from './util';
-import { smaller, bigger, onButtonSmallerClick, onButtonBiggerClick } from './scale';
+import { smaller, bigger, onButtonSmallerClick, onButtonBiggerClick, resetScalle } from './scale';
 import { isValidComment, isValidHastag, erorrString, commentsgInput, hashtagInput } from './validation';
 import { initSlider, updateEffect, resetSlider } from './slider';
 import { sendData } from './api';
+import { renderMessageSuccessForm } from './message';
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadFile = uploadForm.querySelector('.img-upload__input');
 const oploadFormModal = uploadForm.querySelector('.img-upload__overlay');
 const closeForm = uploadForm.querySelector('.img-upload__cancel');
-const uploadSubmit = uploadForm.querySelector('.img-upload__submit');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
 
 const onUploadFormKyedownEsc = (evt) => {
@@ -25,16 +25,23 @@ const openUploadForm = () => {
   document.body.classList.add('modal-open');
 }
 
+const clearForm = () =>{
+  uploadForm.value = '';
+  hashtagInput.value = '';
+  commentsgInput.value = '';
 
+}
 
 function closeUploadForm() {
   oploadFormModal.classList.add('hidden');
   uploadOverlay.classList.add('hidden');
 
   document.removeEventListener('keydown', onUploadFormKyedownEsc);
-  uploadForm.value = '';
-  document.body.classList.remove('modal-open');
+  clearForm();
   resetSlider();
+  resetScalle();
+  document.body.classList.remove('modal-open');
+
 };
 
 
@@ -58,24 +65,37 @@ pristine.addValidator(hashtagInput, isValidHastag, erorrString);
 
 pristine.addValidator(commentsgInput, isValidComment, "Комментарий не должен превышать 140 символов");
 
+const closeSuccessSubmitForm = () =>{
+  closeUploadForm();
+  renderMessageSuccessForm();
+}
+const setUserFormSubmit = (onSuccess, onError) => {
+  uploadForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    if (pristine.validate()) {
+      hashtagInput.value = hashtagInput.value.trim().replaceAll(/\s+/g, ' ');
+      sendData(new FormData(evt.target))
+        .then(onSuccess)
+        .catch(() => {
+          onError();
+        });
+
+
+    }
+
+  });
+};
+
 const initUpload = () => {
   initSlider();
   updateEffect();
   uploadFile.addEventListener('change', onClickUploadFile);
-
+  setUserFormSubmit(closeSuccessSubmitForm);
 
 }
-uploadForm.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  if (pristine.validate()) {
-    hashtagInput.value = hashtagInput.value.trim().replaceAll(/\s+/g, ' ');
-    const data = new FormData(evt.target);
-    sendData(data);
-
-  }
-
-});
 smaller.addEventListener('click', onButtonSmallerClick);
 bigger.addEventListener('click', onButtonBiggerClick);
+
+
 
 export { initUpload }

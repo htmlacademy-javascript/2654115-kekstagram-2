@@ -27,4 +27,9 @@ const onButtonBiggerClick = () =>{
     }
 }
 
-export {uploadOverlay, smaller,bigger, onButtonSmallerClick, onButtonBiggerClick};
+const resetScalle = () =>{
+   image.style.transform = 'scale(1)';
+  imageScaleValue.value = 'scale%';
+
+}
+export {uploadOverlay, smaller,bigger, onButtonSmallerClick, onButtonBiggerClick, resetScalle};
