@@ -26,7 +26,7 @@ const openUploadForm = () => {
 }
 
 const clearForm = () =>{
-  uploadForm.value = '';
+  uploadForm.reset();
   hashtagInput.value = '';
   commentsgInput.value = '';
 
