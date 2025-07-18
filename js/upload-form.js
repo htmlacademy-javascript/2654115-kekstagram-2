@@ -4,7 +4,7 @@ import { smaller, bigger, onButtonSmallerClick, onButtonBiggerClick, resetScalle
 import { isValidComment, isValidHastag, erorrString, commentsgInput, hashtagInput } from './validation';
 import { initSlider, updateEffect, resetSlider } from './slider';
 import { sendData } from './api';
-import { renderMessageSuccessForm } from './message';
+import { renderMessageSuccessForm, renderMessageErrorForm } from './message';
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadFile = uploadForm.querySelector('.img-upload__input');
 const oploadFormModal = uploadForm.querySelector('.img-upload__overlay');
@@ -90,7 +90,7 @@ const initUpload = () => {
   initSlider();
   updateEffect();
   uploadFile.addEventListener('change', onClickUploadFile);
-  setUserFormSubmit(closeSuccessSubmitForm);
+  setUserFormSubmit(closeSuccessSubmitForm, renderMessageErrorForm);
 
 }
 smaller.addEventListener('click', onButtonSmallerClick);
