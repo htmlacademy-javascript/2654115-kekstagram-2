@@ -7,8 +7,12 @@ const messageSuccess = sucsessFormTemplate.cloneNode(true);
 const errorFormTemplate = findTemplate('#error');
 const errorSuccess = errorFormTemplate.cloneNode(true);
 
+const errorGetDataTemplate = findTemplate('#data-error');
+const errorDetData = errorGetDataTemplate.cloneNode(true);
+
+const ERROR_SHOW_TIME = 5000;
 function onFormKyedownEsc(evt){
-  if (evt.key === 'Escape') {
+  if (isEscape(evt)) {
     evt.preventDefault();
     onMessageRemove();
   }
@@ -50,7 +54,13 @@ const renderMessageErrorForm = () => {
 
 
 
+const renderMessageErrorGetData = () =>{
+
+  document.body.appendChild(errorDetData);
+    setTimeout(() => {
+    errorDetData.remove();
+  }, ERROR_SHOW_TIME);
+}
 
 
-
-export { renderMessageSuccessForm, renderMessageErrorForm }
+export { renderMessageSuccessForm, renderMessageErrorForm, renderMessageErrorGetData }
