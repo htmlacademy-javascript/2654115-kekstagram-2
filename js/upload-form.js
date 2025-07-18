@@ -1,8 +1,9 @@
 
 import { isEscape } from './util';
-import {smaller, bigger, onButtonSmallerClick, onButtonBiggerClick} from './scale';
+import { smaller, bigger, onButtonSmallerClick, onButtonBiggerClick } from './scale';
 import { isValidComment, isValidHastag, erorrString, commentsgInput, hashtagInput } from './validation';
 import { initSlider, updateEffect, resetSlider } from './slider';
+import { sendData } from './api';
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadFile = uploadForm.querySelector('.img-upload__input');
 const oploadFormModal = uploadForm.querySelector('.img-upload__overlay');
@@ -61,18 +62,19 @@ const initUpload = () => {
   initSlider();
   updateEffect();
   uploadFile.addEventListener('change', onClickUploadFile);
-  uploadSubmit.addEventListener('click', (evt) => {
-    evt.preventDefault();
-    if (pristine.validate()) {
-      hashtagInput.value = hashtagInput.value.trim().replaceAll(/\s+/g, ' ');
-      uploadForm.submit();
 
-    }
-
-  });
 
 }
+uploadForm.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+  if (pristine.validate()) {
+    hashtagInput.value = hashtagInput.value.trim().replaceAll(/\s+/g, ' ');
+    const data = new FormData(evt.target);
+    sendData(data);
 
+  }
+
+});
 smaller.addEventListener('click', onButtonSmallerClick);
 bigger.addEventListener('click', onButtonBiggerClick);
 
