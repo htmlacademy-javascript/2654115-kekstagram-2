@@ -5,12 +5,18 @@ import { isValidComment, isValidHastag, erorrString, commentsgInput, hashtagInpu
 import { initSlider, updateEffect, resetSlider } from './slider';
 import { sendData } from './api';
 import { renderMessageSuccessForm, renderMessageErrorForm } from './message';
+
+const SubmitButtonText = {
+  IDLE: 'ОПУБЛИКОВАТЬ',
+  SENDING: 'ПУБЛИКУЮ...'
+};
+
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadFile = uploadForm.querySelector('.img-upload__input');
 const oploadFormModal = uploadForm.querySelector('.img-upload__overlay');
 const closeForm = uploadForm.querySelector('.img-upload__cancel');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
-
+const submitButton = uploadForm.querySelector('.img-upload__submit')
 const onUploadFormKyedownEsc = (evt) => {
   if (isEscape(evt) && ![hashtagInput, commentsgInput].includes(evt.target)) {
     closeUploadForm();
@@ -69,16 +75,28 @@ const closeSuccessSubmitForm = () =>{
   closeUploadForm();
   renderMessageSuccessForm();
 }
+
+const blockSubmitButton = () => {
+  submitButton.disabled = true;
+  submitButton.textContent = SubmitButtonText.SENDING;
+};
+
+const unblockSubmitButton = () => {
+  submitButton.disabled = false;
+  submitButton.textContent = SubmitButtonText.IDLE;
+};
+
 const setUserFormSubmit = (onSuccess, onError) => {
   uploadForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
     if (pristine.validate()) {
+      blockSubmitButton();
       hashtagInput.value = hashtagInput.value.trim().replaceAll(/\s+/g, ' ');
       sendData(new FormData(evt.target))
         .then(onSuccess)
         .catch(() => {
           onError();
-        });
+        }).finally(unblockSubmitButton);
 
 
     }
