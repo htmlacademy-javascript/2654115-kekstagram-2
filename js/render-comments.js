@@ -1,12 +1,13 @@
+//Отрисовка комментариев.
 import { renderFragment } from './util';
-const bigPicture = document.querySelector('.big-picture');
-
 const COMMENT_PACK = 5;
-let currCountComm = 0;
-let massComments = [];
+const bigPicture = document.querySelector('.big-picture');
 const bigPictureSocialComments = bigPicture.querySelector('.social__comments');
 const comentsTemplate = bigPictureSocialComments.querySelector('.social__comment');
 const commentsLoader = bigPicture.querySelector('.comments-loader');
+
+let currCountComm = 0;
+let massComments = [];
 
 const renderComent = (comment) => {
 
