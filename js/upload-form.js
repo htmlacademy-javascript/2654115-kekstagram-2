@@ -17,7 +17,7 @@ const uploadFile = uploadForm.querySelector('.img-upload__input');
 const oploadFormModal = uploadForm.querySelector('.img-upload__overlay');
 const closeForm = uploadForm.querySelector('.img-upload__cancel');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
-const submitButton = uploadForm.querySelector('.img-upload__submit')
+const submitButton = uploadForm.querySelector('.img-upload__submit');
 
 const onUploadFormKyedownEsc = (evt) => {
   if (isEscape(evt) && ![hashtagInput, commentsgInput].includes(evt.target)) {
@@ -37,8 +37,7 @@ const clearForm = () => {
   uploadForm.reset();
   hashtagInput.value = '';
   commentsgInput.value = '';
-  ;
-}
+};
 
 function closeUploadForm() {
   oploadFormModal.classList.add('hidden');
@@ -76,7 +75,7 @@ pristine.addValidator(commentsgInput, isValidComment, 'Комментарий н
 const closeSuccessSubmitForm = () => {
   closeUploadForm();
   renderMessageSuccessForm();
-}
+};
 
 const blockSubmitButton = () => {
   submitButton.disabled = true;

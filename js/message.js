@@ -36,7 +36,7 @@ function onMessageRemove() {
 const renderMessageSuccessForm = () => {
 
   document.body.appendChild(messageSuccess);
-  const btnSuccess = document.querySelector('.success__button')
+  const btnSuccess = document.querySelector('.success__button');
   document.addEventListener('keydown', onFormKyedownEsc);
   btnSuccess.addEventListener('click', onMessageRemove);
   document.addEventListener('click', onBodyClick);
@@ -46,7 +46,7 @@ const renderMessageSuccessForm = () => {
 const renderMessageErrorForm = () => {
 
   document.body.appendChild(errorSuccess);
-  const btnError = document.querySelector('.error__button')
+  const btnError = document.querySelector('.error__button');
   document.addEventListener('keydown', onFormKyedownEsc);
   btnError.addEventListener('click', onMessageRemove);
   document.addEventListener('click', onBodyClick);

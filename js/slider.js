@@ -138,4 +138,4 @@ function onEffectButtonClick() {
 }
 
 
-export { initSlider, updateEffect, resetSlider }
+export { initSlider, updateEffect, resetSlider };

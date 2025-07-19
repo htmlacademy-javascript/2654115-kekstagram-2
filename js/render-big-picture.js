@@ -46,7 +46,7 @@ const renderBigPictures = (items) => {
     image.addEventListener('click', () => {
       openBigPicture(image.dataset.pictureId, items);
     })
-  )
+  );
 
 };
 

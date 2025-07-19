@@ -13,7 +13,7 @@ function onButtonSmallerClick(){
   if (scale > SCALE_STEP) {
     scale -= SCALE_STEP;
     image.style.transform = `scale(${scale})`;
-    imageScaleValue.value = `${scale * 100}%`
+    imageScaleValue.value = `${scale * 100}%`;
   }
 
 }
@@ -22,7 +22,7 @@ function onButtonBiggerClick(){
   if (scale < 1) {
     scale += SCALE_STEP;
     image.style.transform = `scale(${scale})`;
-    imageScaleValue.value = `${scale * 100}%`
+    imageScaleValue.value = `${scale * 100}%`;
   }
 }
 
