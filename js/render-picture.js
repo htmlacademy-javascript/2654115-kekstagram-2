@@ -1,3 +1,4 @@
+//Отрисовка изображения.
 import { findTemplate } from './util.js';
 
 const pictureContainer = document.querySelector('.pictures');

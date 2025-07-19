@@ -1,4 +1,4 @@
-/*Действия с окном большого изображения. */
+//Действия с окном большого изображения.
 import { isEscape } from './util';
 import { renderComments, closeComments } from './render-comments';
 

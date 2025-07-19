@@ -1,3 +1,4 @@
+//Работа со слайдером.
 const effects = [
   {
     name: 'none',

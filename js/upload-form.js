@@ -1,4 +1,5 @@
 
+//Отображение и отправка формы.
 import { isEscape } from './util';
 import { smaller, bigger, onButtonSmallerClick, onButtonBiggerClick, resetScalle } from './scale';
 import { isValidComment, isValidHastag, erorrString, commentsgInput, hashtagInput } from './validation';
