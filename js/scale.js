@@ -9,7 +9,7 @@ const smaller = uploadScale.querySelector('.scale__control--smaller');//умен
 const bigger = uploadScale.querySelector('.scale__control--bigger');//увеличение
 
 let scale = 1;
-const onButtonSmallerClick = () => {
+function onButtonSmallerClick(){
   if (scale > SCALE_STEP) {
     scale -= SCALE_STEP;
     image.style.transform = `scale(${scale})`;
@@ -18,7 +18,7 @@ const onButtonSmallerClick = () => {
 
 }
 
-const onButtonBiggerClick = () => {
+function onButtonBiggerClick(){
   if (scale < 1) {
     scale += SCALE_STEP;
     image.style.transform = `scale(${scale})`;
@@ -30,5 +30,5 @@ const resetScalle = () => {
   image.style.transform = 'scale(1)';
   imageScaleValue.value = 'scale%';
 
-}
+};
 export { uploadOverlay, smaller, bigger, onButtonSmallerClick, onButtonBiggerClick, resetScalle };

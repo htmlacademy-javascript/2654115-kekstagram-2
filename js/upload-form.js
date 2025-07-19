@@ -18,6 +18,7 @@ const oploadFormModal = uploadForm.querySelector('.img-upload__overlay');
 const closeForm = uploadForm.querySelector('.img-upload__cancel');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
 const submitButton = uploadForm.querySelector('.img-upload__submit')
+
 const onUploadFormKyedownEsc = (evt) => {
   if (isEscape(evt) && ![hashtagInput, commentsgInput].includes(evt.target)) {
     closeUploadForm();
@@ -30,13 +31,13 @@ const openUploadForm = () => {
 
   document.addEventListener('keydown', onUploadFormKyedownEsc);
   document.body.classList.add('modal-open');
-}
+};
 
-const clearForm = () =>{
+const clearForm = () => {
   uploadForm.reset();
   hashtagInput.value = '';
   commentsgInput.value = '';
-
+  ;
 }
 
 function closeUploadForm() {
@@ -49,7 +50,7 @@ function closeUploadForm() {
   resetScalle();
   document.body.classList.remove('modal-open');
 
-};
+}
 
 
 closeForm.addEventListener('click', closeUploadForm);
@@ -70,9 +71,9 @@ const pristine = new Pristine(uploadForm, {
 pristine.addValidator(hashtagInput, isValidHastag, erorrString);
 
 
-pristine.addValidator(commentsgInput, isValidComment, "Комментарий не должен превышать 140 символов");
+pristine.addValidator(commentsgInput, isValidComment, 'Комментарий не должен превышать 140 символов');
 
-const closeSuccessSubmitForm = () =>{
+const closeSuccessSubmitForm = () => {
   closeUploadForm();
   renderMessageSuccessForm();
 }
@@ -99,7 +100,6 @@ const setUserFormSubmit = (onSuccess, onError) => {
           onError();
         }).finally(unblockSubmitButton);
 
-
     }
 
   });
@@ -111,10 +111,9 @@ const initUpload = () => {
   uploadFile.addEventListener('change', onClickUploadFile);
   setUserFormSubmit(closeSuccessSubmitForm, renderMessageErrorForm);
 
-}
+};
+
 smaller.addEventListener('click', onButtonSmallerClick);
 bigger.addEventListener('click', onButtonBiggerClick);
 
-
-
-export { initUpload }
+export { initUpload };

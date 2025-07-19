@@ -12,12 +12,11 @@ const closeBigPicture = () => {
   document.body.classList.remove('modal-open');
 };
 
-const onBigPictureFormKeydownEsc = (evt) => {
+function onBigPictureFormKeydownEsc(evt) {
   if (isEscape(evt)) {
     closeBigPicture();
   }
-};
-
+}
 
 const renderModalBigPicture = (picture) => {
   const bigPictureImg = bigPicture.querySelector('.big-picture__img img');
@@ -43,7 +42,7 @@ const renderBigPictures = (items) => {
 
   const picture = document.querySelectorAll('.picture');
 
-  picture.forEach(image =>
+  picture.forEach((image) =>
     image.addEventListener('click', () => {
       openBigPicture(image.dataset.pictureId, items);
     })

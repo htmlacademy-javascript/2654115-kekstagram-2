@@ -11,19 +11,20 @@ const errorGetDataTemplate = findTemplate('#data-error');
 const errorDetData = errorGetDataTemplate.cloneNode(true);
 
 const ERROR_SHOW_TIME = 5000;
-function onFormKyedownEsc(evt){
+
+function onFormKyedownEsc(evt) {
   if (isEscape(evt)) {
     evt.preventDefault();
     onMessageRemove();
   }
-};
+}
 
-function onBodyClick(evt){
+function onBodyClick(evt) {
   if (evt.target.closest('.success__inner') || (evt.target.closest('.error__inner'))) {
     return;
   }
   onMessageRemove();
-};
+}
 
 function onMessageRemove() {
   const existsElement = document.querySelector('.success') || document.querySelector('.error');
@@ -31,7 +32,6 @@ function onMessageRemove() {
   document.removeEventListener('keydown', onFormKyedownEsc);
   document.removeEventListener('click', onBodyClick);
 }
-
 
 const renderMessageSuccessForm = () => {
 
@@ -41,7 +41,7 @@ const renderMessageSuccessForm = () => {
   btnSuccess.addEventListener('click', onMessageRemove);
   document.addEventListener('click', onBodyClick);
 
-}
+};
 
 const renderMessageErrorForm = () => {
 
@@ -50,17 +50,14 @@ const renderMessageErrorForm = () => {
   document.addEventListener('keydown', onFormKyedownEsc);
   btnError.addEventListener('click', onMessageRemove);
   document.addEventListener('click', onBodyClick);
-}
+};
 
-
-
-const renderMessageErrorGetData = () =>{
+const renderMessageErrorGetData = () => {
 
   document.body.appendChild(errorDetData);
-    setTimeout(() => {
+  setTimeout(() => {
     errorDetData.remove();
   }, ERROR_SHOW_TIME);
-}
+};
 
-
-export { renderMessageSuccessForm, renderMessageErrorForm, renderMessageErrorGetData }
+export { renderMessageSuccessForm, renderMessageErrorForm, renderMessageErrorGetData };
