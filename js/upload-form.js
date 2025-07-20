@@ -19,6 +19,13 @@ const closeForm = uploadForm.querySelector('.img-upload__cancel');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
 const submitButton = uploadForm.querySelector('.img-upload__submit');
 
+const pristine = new Pristine(uploadForm, {
+  classTo: 'img-upload__field-wrapper',
+  errorTextParent: 'img-upload__field-wrapper',
+  errorTextClass: 'img-upload__field-wrapper--error',
+
+});
+
 const onUploadFormKyedownEsc = (evt) => {
   if (isEscape(evt) && ![hashtagInput, commentsInput].includes(evt.target)) {
     closeUploadForm();
@@ -59,12 +66,7 @@ const onClickUploadFile = () => {
 
 };
 
-const pristine = new Pristine(uploadForm, {
-  classTo: 'img-upload__field-wrapper',
-  errorTextParent: 'img-upload__field-wrapper',
-  errorTextClass: 'img-upload__field-wrapper--error',
 
-});
 
 pristine.addValidator(hashtagInput, isValidHastag, erorrString);
 
