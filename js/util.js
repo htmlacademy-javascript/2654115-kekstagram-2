@@ -17,5 +17,13 @@ const renderFragment = (items, makeElement, container) => {
 
 const isEscape = (evt) => evt.key === 'Escape';
 
+const debounce = (callback, timeoutDelay = 500) => {
+  let timeoutId;
 
-export { findTemplate, renderFragment, isEscape };
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
+
+export { findTemplate, renderFragment, isEscape, debounce };
