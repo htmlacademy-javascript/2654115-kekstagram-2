@@ -67,7 +67,6 @@ const onClickUploadFile = () => {
 };
 
 
-
 pristine.addValidator(hashtagInput, isValidHastag, erorrString);
 
 
