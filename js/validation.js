@@ -1,10 +1,10 @@
-//Файл валидации хештегов и комментариев
+//Валидация хештегов и комментариев.
 
 const VALIDATION_RULES = {
   MAX_LENGTH_COMMENT: 140,
   MAX_HASHTAG: 5,
   MAX_LENGTH_HASHTAG: 20
-}
+};
 
 const ERROR_MESSAGES = {
   HASHTAGS: {
@@ -21,12 +21,9 @@ const ERROR_MESSAGES = {
   }
 };
 
-
-
 const uploadForm = document.querySelector('.img-upload__form');
 const commentsInput = uploadForm.querySelector('.text__description');
 const hashtagInput = uploadForm.querySelector('.text__hashtags');
-
 
 const isValidComment = () => commentsInput.value.length < VALIDATION_RULES.MAX_LENGTH_COMMENT;
 
@@ -35,7 +32,7 @@ const erorrString = () => messageErrorHastag;
 
 const isValidHastag = () => {
 
-  if (hashtagInput.value != 0) {
+  if (hashtagInput.value !== 0) {
     const hashtags = hashtagInput.value.toLowerCase().trim().split(/\s+/);
     const uniqueHashtags = new Set();
     const regularExHashtag = /^#([а-яёa-z0-9]){1,19}$/i;
@@ -53,7 +50,7 @@ const isValidHastag = () => {
         messageErrorHastag = ERROR_MESSAGES.HASHTAGS.ONLY_HASH;
         return false;
       }
-      if (tag[0] != '#') {
+      if (tag[0] !== '#') {
         messageErrorHastag = ERROR_MESSAGES.HASHTAGS.MUST_START_WITH_HASH;
         return false;
       }
@@ -81,7 +78,6 @@ const isValidHastag = () => {
 
   return true;
 
-}
+};
 
-
-export { isValidComment, isValidHastag, erorrString, commentsInput as commentsgInput, hashtagInput }
+export { isValidComment, isValidHastag, erorrString, commentsInput, hashtagInput };

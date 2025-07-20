@@ -15,9 +15,7 @@ const renderFragment = (items, makeElement, container) => {
   container.append(fragment);
 };
 
-const isEscape = (evt) => {
-  return evt.key === 'Escape';
-};
+const isEscape = (evt) => evt.key === 'Escape';
 
 
 export { findTemplate, renderFragment, isEscape };

@@ -1,6 +1,5 @@
-/*Действия с окном большого изображения. */
+//Действия с окном большого изображения.
 import { isEscape } from './util';
-import { generatePicture } from './render-picture';
 import { renderComments, closeComments } from './render-comments';
 
 const bigPicture = document.querySelector('.big-picture');
@@ -13,12 +12,11 @@ const closeBigPicture = () => {
   document.body.classList.remove('modal-open');
 };
 
-const onBigPictureFormKeydownEsc = (evt) => {
+function onBigPictureFormKeydownEsc(evt) {
   if (isEscape(evt)) {
     closeBigPicture();
   }
-};
-
+}
 
 const renderModalBigPicture = (picture) => {
   const bigPictureImg = bigPicture.querySelector('.big-picture__img img');
@@ -31,24 +29,24 @@ const renderModalBigPicture = (picture) => {
   renderComments(picture.comments);
 };
 
-const openBigPicture = (pictureId) => {
+const openBigPicture = (pictureId, items) => {
   bigPicture.classList.remove('hidden');
   document.addEventListener('keydown', onBigPictureFormKeydownEsc);
 
-  const currPicture = generatePicture.find((elem) => elem.id === Number(pictureId));
+  const currPicture = items.find((elem) => elem.id === Number(pictureId));
   renderModalBigPicture(currPicture);
   document.body.classList.add('modal-open');
 };
 
-const renderBigPictures = () => {
+const renderBigPictures = (items) => {
 
   const picture = document.querySelectorAll('.picture');
 
-  picture.forEach(image =>
+  picture.forEach((image) =>
     image.addEventListener('click', () => {
-      openBigPicture(image.dataset.pictureId);
+      openBigPicture(image.dataset.pictureId, items);
     })
-  )
+  );
 
 };
 
