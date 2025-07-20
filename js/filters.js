@@ -1,6 +1,6 @@
 //фильтрация
-import { renderFragment, debounce } from "./util";
-import { pictureContainer, createPicture } from "./render-picture";
+import { renderFragment, debounce } from './util';
+import { pictureContainer, createPicture } from './render-picture';
 
 const RERENDER_DELAY = 500;
 const NUMBER_RANDOM_IMG = 10;
@@ -55,8 +55,7 @@ const renderImages = (filterId, image) => {
     imgFilters = modeFilters.DEFAULT.mode(image);
   } else if (modeFilters.RANDOM.name === filterId) {
     imgFilters = modeFilters.RANDOM.mode(image);
-  }
-  else if (modeFilters.DISCUSSED.name === filterId) {
+  }else if (modeFilters.DISCUSSED.name === filterId) {
     imgFilters = modeFilters.DISCUSSED.mode(image);
   }
   clearImages();
@@ -81,4 +80,4 @@ const initFilters = () => {
   initFilterButtonsActive();
 };
 
-export { initFilters, renderFiltersImages }
+export { initFilters, renderFiltersImages };
