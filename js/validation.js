@@ -80,4 +80,4 @@ const isValidHastag = () => {
 
 };
 
-export { isValidComment, isValidHastag, erorrString, commentsInput as commentsgInput, hashtagInput };
+export { isValidComment, isValidHastag, erorrString, commentsInput, hashtagInput };

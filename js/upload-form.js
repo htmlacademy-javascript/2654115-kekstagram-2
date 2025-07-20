@@ -2,7 +2,7 @@
 //Отображение и отправка формы.
 import { isEscape } from './util';
 import { smaller, bigger, onButtonSmallerClick, onButtonBiggerClick, resetScalle } from './scale';
-import { isValidComment, isValidHastag, erorrString, commentsgInput, hashtagInput } from './validation';
+import { isValidComment, isValidHastag, erorrString, commentsInput, hashtagInput } from './validation';
 import { initSlider, updateEffect, resetSlider } from './slider';
 import { sendData } from './api';
 import { renderMessageSuccessForm, renderMessageErrorForm } from './message';
@@ -20,7 +20,7 @@ const uploadOverlay = document.querySelector('.img-upload__overlay');
 const submitButton = uploadForm.querySelector('.img-upload__submit');
 
 const onUploadFormKyedownEsc = (evt) => {
-  if (isEscape(evt) && ![hashtagInput, commentsgInput].includes(evt.target)) {
+  if (isEscape(evt) && ![hashtagInput, commentsInput].includes(evt.target)) {
     closeUploadForm();
   }
 };
@@ -35,8 +35,7 @@ const openUploadForm = () => {
 
 const clearForm = () => {
   uploadForm.reset();
-  hashtagInput.value = '';
-  commentsgInput.value = '';
+  pristine.reset();
 };
 
 function closeUploadForm() {
@@ -70,7 +69,7 @@ const pristine = new Pristine(uploadForm, {
 pristine.addValidator(hashtagInput, isValidHastag, erorrString);
 
 
-pristine.addValidator(commentsgInput, isValidComment, 'Комментарий не должен превышать 140 символов');
+pristine.addValidator(commentsInput, isValidComment, 'Комментарий не должен превышать 140 символов');
 
 const closeSuccessSubmitForm = () => {
   closeUploadForm();

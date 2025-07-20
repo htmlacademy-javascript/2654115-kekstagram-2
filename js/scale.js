@@ -1,5 +1,7 @@
 //Масштабирование.
 const SCALE_STEP = 0.25;
+const MAX_SCALE = 100;
+const MIN_SCALE_TRANSFORM = 1;
 
 const uploadOverlay = document.querySelector('.img-upload__overlay');
 const uploadScale = uploadOverlay.querySelector('.img-upload__scale');
@@ -19,16 +21,16 @@ function onButtonSmallerClick(){
 }
 
 function onButtonBiggerClick(){
-  if (scale < 1) {
+  if (scale < MIN_SCALE_TRANSFORM) {
     scale += SCALE_STEP;
     image.style.transform = `scale(${scale})`;
-    imageScaleValue.value = `${scale * 100}%`;
+    imageScaleValue.value = `${scale * MAX_SCALE}%`;
   }
 }
 
 const resetScalle = () => {
-  image.style.transform = 'scale(1)';
-  imageScaleValue.value = 'scale%';
+  image.style.transform = `scale(${MIN_SCALE_TRANSFORM})`;
+  imageScaleValue.value = `${MAX_SCALE}%`;
 
 };
 export { uploadOverlay, smaller, bigger, onButtonSmallerClick, onButtonBiggerClick, resetScalle };
