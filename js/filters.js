@@ -1,4 +1,4 @@
-
+//фильтрация
 import { renderFragment, debounce } from "./util";
 import { pictureContainer, createPicture } from "./render-picture";
 
@@ -24,13 +24,12 @@ const modeFilters = {
 };
 
 
-
-function compareComments(imgA, imgB){
+function compareComments(imgA, imgB) {
   const commentsCountA = imgA.comments.length;
   const commentsCountB = imgB.comments.length;
 
   return commentsCountB - commentsCountA;
-};
+}
 
 const clearImages = () => {
   document.querySelectorAll('.picture').forEach((img) => {
@@ -50,24 +49,24 @@ const initFilterButtonsActive = () => {
   });
 };
 
-
-const renderImages = (filterId, image) =>{
+const renderImages = (filterId, image) => {
   let imgFilters = [];
-  if(modeFilters.DEFAULT.name === filterId){
+  if (modeFilters.DEFAULT.name === filterId) {
     imgFilters = modeFilters.DEFAULT.mode(image);
-  }else if(modeFilters.RANDOM.name === filterId){
+  } else if (modeFilters.RANDOM.name === filterId) {
     imgFilters = modeFilters.RANDOM.mode(image);
   }
-  else if(modeFilters.DISCUSSED.name === filterId){
+  else if (modeFilters.DISCUSSED.name === filterId) {
     imgFilters = modeFilters.DISCUSSED.mode(image);
   }
   clearImages();
   renderFragment(imgFilters, createPicture, pictureContainer);
 
 };
-const renderFiltersImages = (image) =>{
 
-  function onFiltersClick(evt){
+const renderFiltersImages = (image) => {
+
+  function onFiltersClick(evt) {
 
     const buttonId = evt.target.closest('button').id;
     renderImages(buttonId, image);
@@ -77,11 +76,9 @@ const renderFiltersImages = (image) =>{
 
 };
 
-const initFilters = () =>{
-document.querySelector('.img-filters').classList.remove('img-filters--inactive');
-initFilterButtonsActive();
-
-
+const initFilters = () => {
+  document.querySelector('.img-filters').classList.remove('img-filters--inactive');
+  initFilterButtonsActive();
 };
 
-export { initFilters,renderFiltersImages }
+export { initFilters, renderFiltersImages }
