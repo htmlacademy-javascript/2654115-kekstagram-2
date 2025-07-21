@@ -1,6 +1,7 @@
 //фильтрация
 import { renderFragment, debounce } from './util';
 import { pictureContainer, createPicture } from './render-picture';
+import { renderBigPictures } from './render-big-picture';
 
 const RERENDER_DELAY = 500;
 const NUMBER_RANDOM_IMG = 10;
@@ -61,6 +62,7 @@ const renderImages = (filterId, image) => {
   clearImages();
   renderFragment(imgFilters, createPicture, pictureContainer);
 
+
 };
 
 const renderFiltersImages = (image) => {
@@ -69,6 +71,7 @@ const renderFiltersImages = (image) => {
 
     const buttonId = evt.target.closest('button').id;
     renderImages(buttonId, image);
+    renderBigPictures(image);
   }
 
   filterForm.addEventListener('click', debounce(onFiltersClick, RERENDER_DELAY));
