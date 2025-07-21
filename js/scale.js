@@ -30,7 +30,7 @@ function onButtonBiggerClick(){
 
 const resetScalle = () => {
   image.style.transform = `scale(${MIN_SCALE_TRANSFORM})`;
-  imageScaleValue.value = `${MAX_SCALE}%`;
+  scale = MIN_SCALE_TRANSFORM;
 
 };
 export { uploadOverlay, smaller, bigger, onButtonSmallerClick, onButtonBiggerClick, resetScalle };
