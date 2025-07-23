@@ -32,12 +32,13 @@ const erorrString = () => messageErrorHastag;
 
 const isValidHastag = () => {
 
-  if (hashtagInput.value !== 0) {
+
+
+  if (hashtagInput.value.length !== 0) {
     const hashtags = hashtagInput.value.toLowerCase().trim().split(/\s+/);
     const uniqueHashtags = new Set();
     const regularExHashtag = /^#([а-яёa-z0-9]){1,19}$/i;
     messageErrorHastag = '';
-
 
     if (hashtags.length > VALIDATION_RULES.MAX_HASHTAG) {
       messageErrorHastag = ERROR_MESSAGES.HASHTAGS.TOO_MANY;
