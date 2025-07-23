@@ -12,11 +12,15 @@ const SubmitButtonText = {
   SENDING: 'ПУБЛИКУЮ...'
 };
 
+const FILE_TYPES = ['jpg', 'jpeg', 'png'];
+
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadFile = uploadForm.querySelector('.img-upload__input');
+const uploadOverlay = document.querySelector('.img-upload__overlay');
+const preview = document.querySelector('.img-upload__preview img');
+const effectPreview = uploadOverlay.querySelectorAll('.effects__preview');
 const oploadFormModal = uploadForm.querySelector('.img-upload__overlay');
 const closeForm = uploadForm.querySelector('.img-upload__cancel');
-const uploadOverlay = document.querySelector('.img-upload__overlay');
 const submitButton = uploadForm.querySelector('.img-upload__submit');
 
 const pristine = new Pristine(uploadForm, {
@@ -31,13 +35,27 @@ const onUploadFormKyedownEsc = (evt) => {
     closeUploadForm();
   }
 };
+pristine.addValidator(hashtagInput, isValidHastag, erorrString);
+
+
+pristine.addValidator(commentsInput, isValidComment, 'Комментарий не должен превышать 140 символов');
 
 const openUploadForm = () => {
-  oploadFormModal.classList.remove('hidden');
-  uploadOverlay.classList.remove('hidden');
+  const file = uploadFile.files[0];
+  const fileName = file.name.toLowerCase();
+  const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
 
-  document.addEventListener('keydown', onUploadFormKyedownEsc);
-  document.body.classList.add('modal-open');
+  if (matches) {
+    preview.src = URL.createObjectURL(file);
+    effectPreview.forEach((previewImg) => previewImg.style.backgroundImage = `url(${URL.createObjectURL(file)})`);
+
+    oploadFormModal.classList.remove('hidden');
+    uploadOverlay.classList.remove('hidden');
+
+    document.addEventListener('keydown', onUploadFormKyedownEsc);
+    document.body.classList.add('modal-open');
+  }
+
 };
 
 const clearForm = () => {
@@ -67,10 +85,7 @@ const onClickUploadFile = () => {
 };
 
 
-pristine.addValidator(hashtagInput, isValidHastag, erorrString);
 
-
-pristine.addValidator(commentsInput, isValidComment, 'Комментарий не должен превышать 140 символов');
 
 const closeSuccessSubmitForm = () => {
   closeUploadForm();
