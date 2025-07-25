@@ -47,7 +47,9 @@ const openUploadForm = () => {
 
   if (matches) {
     preview.src = URL.createObjectURL(file);
-    effectPreview.forEach((previewImg) => previewImg.style.backgroundImage = `url(${URL.createObjectURL(file)})`);
+    effectPreview.forEach((previewImg) => {
+      previewImg.style.backgroundImage = `url(${URL.createObjectURL(file)})`;
+    });
 
     oploadFormModal.classList.remove('hidden');
     uploadOverlay.classList.remove('hidden');
@@ -83,9 +85,6 @@ const onClickUploadFile = () => {
   openUploadForm();
 
 };
-
-
-
 
 const closeSuccessSubmitForm = () => {
   closeUploadForm();

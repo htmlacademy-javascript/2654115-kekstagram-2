@@ -32,8 +32,6 @@ const erorrString = () => messageErrorHastag;
 
 const isValidHastag = () => {
 
-
-
   if (hashtagInput.value.length !== 0) {
     const hashtags = hashtagInput.value.toLowerCase().trim().split(/\s+/);
     const uniqueHashtags = new Set();
