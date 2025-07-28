@@ -92,7 +92,6 @@ let currentClassFill = '';
 
 const initSlider = () => {
   sliderLevel.classList.add('hidden');
-  image.classList.add('effects__preview--none');
   currentClassFill = 'effects__preview--none';
 };
 
@@ -108,7 +107,7 @@ noUiSlider.create(slider, {
 
 slider.noUiSlider.on('update', () => {
   if (currentEffect) {
-    effectLevel.value = slider.noUiSlider.get();
+    effectLevel.value = Number(slider.noUiSlider.get());
     image.style.filter = currentEffect.setFilter(effectLevel.value);
   }
 });

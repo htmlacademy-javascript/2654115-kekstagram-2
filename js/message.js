@@ -12,6 +12,10 @@ const errorDetData = errorGetDataTemplate.cloneNode(true);
 
 const ERROR_SHOW_TIME = 5000;
 
+let isMessageOpen = false;
+
+const getMessageModalOpen = () => isMessageOpen;
+
 function onFormKyedownEsc(evt) {
   if (isEscape(evt)) {
     evt.preventDefault();
@@ -31,6 +35,7 @@ function onMessageRemove() {
   existsElement.remove();
   document.removeEventListener('keydown', onFormKyedownEsc);
   document.removeEventListener('click', onBodyClick);
+  isMessageOpen = false;
 }
 
 const renderMessageSuccessForm = () => {
@@ -50,6 +55,7 @@ const renderMessageErrorForm = () => {
   document.addEventListener('keydown', onFormKyedownEsc);
   btnError.addEventListener('click', onMessageRemove);
   document.addEventListener('click', onBodyClick);
+  isMessageOpen = true;
 };
 
 const renderMessageErrorGetData = () => {
@@ -60,4 +66,4 @@ const renderMessageErrorGetData = () => {
   }, ERROR_SHOW_TIME);
 };
 
-export { renderMessageSuccessForm, renderMessageErrorForm, renderMessageErrorGetData };
+export { renderMessageSuccessForm, renderMessageErrorForm, renderMessageErrorGetData , getMessageModalOpen};

@@ -5,7 +5,7 @@ import { smaller, bigger, onButtonSmallerClick, onButtonBiggerClick, resetScalle
 import { isValidComment, isValidHastag, erorrString, commentsInput, hashtagInput } from './validation';
 import { initSlider, updateEffect, resetSlider } from './slider';
 import { sendData } from './api';
-import { renderMessageSuccessForm, renderMessageErrorForm } from './message';
+import { renderMessageSuccessForm, renderMessageErrorForm, getMessageModalOpen } from './message';
 
 const SubmitButtonText = {
   IDLE: 'ОПУБЛИКОВАТЬ',
@@ -31,7 +31,8 @@ const pristine = new Pristine(uploadForm, {
 });
 
 const onUploadFormKyedownEsc = (evt) => {
-  if (isEscape(evt) && ![hashtagInput, commentsInput].includes(evt.target)) {
+
+  if ((isEscape(evt) && ![hashtagInput, commentsInput].includes(evt.target)) && !getMessageModalOpen()) {
     closeUploadForm();
   }
 };
@@ -91,6 +92,10 @@ const closeSuccessSubmitForm = () => {
   renderMessageSuccessForm();
 };
 
+const closeErrorSubmitForm = () => {
+  renderMessageErrorForm();
+};
+
 const blockSubmitButton = () => {
   submitButton.disabled = true;
   submitButton.textContent = SubmitButtonText.SENDING;
@@ -122,7 +127,7 @@ const initUpload = () => {
   initSlider();
   updateEffect();
   uploadFile.addEventListener('change', onClickUploadFile);
-  setUserFormSubmit(closeSuccessSubmitForm, renderMessageErrorForm);
+  setUserFormSubmit(closeSuccessSubmitForm, closeErrorSubmitForm);
 
 };
 
