@@ -6,7 +6,7 @@ import { renderBigPictures } from './render-big-picture';
 const RERENDER_DELAY = 500;
 const NUMBER_RANDOM_IMG = 10;
 const filterForm = document.querySelector('.img-filters__form');
-const filterBtns = document.querySelectorAll('.img-filters__button');
+const filterButtons = document.querySelectorAll('.img-filters__button');
 
 const modeFilters = {
   DEFAULT: {
@@ -21,7 +21,6 @@ const modeFilters = {
     name: 'filter-discussed',
     mode: (images) => images.slice().sort(compareComments),
   }
-
 };
 
 
@@ -39,7 +38,7 @@ const clearImages = () => {
 };
 
 const initFilterButtonsActive = () => {
-  filterBtns.forEach((button) => {
+  filterButtons.forEach((button) => {
     button.addEventListener('click', (evt) => {
       const activeButton = filterForm.querySelector('.img-filters__button--active');
       if (activeButton.id !== evt.target.id) {
@@ -61,8 +60,6 @@ const renderImages = (filterId, image) => {
   }
   clearImages();
   renderFragment(imgFilters, createPicture, pictureContainer);
-
-
 };
 
 const renderFiltersImages = (image) => {
@@ -75,7 +72,6 @@ const renderFiltersImages = (image) => {
   }
 
   filterForm.addEventListener('click', debounce(onFiltersClick, RERENDER_DELAY));
-
 };
 
 const initFilters = () => {

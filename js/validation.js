@@ -11,13 +11,13 @@ const ERROR_MESSAGES = {
     TOO_MANY: `Нельзя указать больше  ${VALIDATION_RULES.MAX_HASHTAG} хэштегов`,
     MUST_START_WITH_HASH: 'Хэштег должен начинаться с #',
     ONLY_HASH: 'Хэштег не может состоять только из одной решётки',
-    TOO_LONG: `Максимальная длина хэштега — ${VALIDATION_RULES.MAX_HASHTAG_LENGTH} символов`,
+    TOO_LONG: `Максимальная длина хэштега — ${VALIDATION_RULES.MAX_LENGTH_HASHTAG} символов`,
     INVALID_CHARACTERS: 'Хэштег может содержать только буквы и цифры, без пробелов и спецсимволов',
     NOT_UNIQUE: 'Один и тот же хэштег не может использоваться дважды',
     BY_SPACE: 'Хештеги вводятся через пробел'
   },
   COMMENT: {
-    TOO_LONG: `Длина комментария не может превышать ${VALIDATION_RULES.MAX_COMMENT_LENGTH} символов`
+    TOO_LONG: `Длина комментария не может превышать ${VALIDATION_RULES.MAX_LENGTH_COMMENT} символов`
   }
 };
 
@@ -31,8 +31,6 @@ let messageErrorHastag = '';
 const erorrString = () => messageErrorHastag;
 
 const isValidHastag = () => {
-
-
 
   if (hashtagInput.value.length !== 0) {
     const hashtags = hashtagInput.value.toLowerCase().trim().split(/\s+/);

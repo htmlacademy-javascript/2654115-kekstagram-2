@@ -5,7 +5,7 @@ import { smaller, bigger, onButtonSmallerClick, onButtonBiggerClick, resetScalle
 import { isValidComment, isValidHastag, erorrString, commentsInput, hashtagInput } from './validation';
 import { initSlider, updateEffect, resetSlider } from './slider';
 import { sendData } from './api';
-import { renderMessageSuccessForm, renderMessageErrorForm } from './message';
+import { renderMessageSuccessForm, renderMessageErrorForm, getMessageModalOpen } from './message';
 
 const SubmitButtonText = {
   IDLE: 'ОПУБЛИКОВАТЬ',
@@ -27,17 +27,16 @@ const pristine = new Pristine(uploadForm, {
   classTo: 'img-upload__field-wrapper',
   errorTextParent: 'img-upload__field-wrapper',
   errorTextClass: 'img-upload__field-wrapper--error',
-
 });
 
 const onUploadFormKyedownEsc = (evt) => {
-  if (isEscape(evt) && ![hashtagInput, commentsInput].includes(evt.target)) {
+
+  if ((isEscape(evt) && ![hashtagInput, commentsInput].includes(evt.target)) && !getMessageModalOpen()) {
     closeUploadForm();
   }
 };
+
 pristine.addValidator(hashtagInput, isValidHastag, erorrString);
-
-
 pristine.addValidator(commentsInput, isValidComment, 'Комментарий не должен превышать 140 символов');
 
 const openUploadForm = () => {
@@ -47,7 +46,9 @@ const openUploadForm = () => {
 
   if (matches) {
     preview.src = URL.createObjectURL(file);
-    effectPreview.forEach((previewImg) => previewImg.style.backgroundImage = `url(${URL.createObjectURL(file)})`);
+    effectPreview.forEach((previewImg) => {
+      previewImg.style.backgroundImage = `url(${URL.createObjectURL(file)})`;
+    });
 
     oploadFormModal.classList.remove('hidden');
     uploadOverlay.classList.remove('hidden');
@@ -55,7 +56,6 @@ const openUploadForm = () => {
     document.addEventListener('keydown', onUploadFormKyedownEsc);
     document.body.classList.add('modal-open');
   }
-
 };
 
 const clearForm = () => {
@@ -72,24 +72,22 @@ function closeUploadForm() {
   resetSlider();
   resetScalle();
   document.body.classList.remove('modal-open');
-
 }
 
 
 closeForm.addEventListener('click', closeUploadForm);
 
 const onClickUploadFile = () => {
-
   openUploadForm();
-
 };
-
-
-
 
 const closeSuccessSubmitForm = () => {
   closeUploadForm();
   renderMessageSuccessForm();
+};
+
+const closeErrorSubmitForm = () => {
+  renderMessageErrorForm();
 };
 
 const blockSubmitButton = () => {
@@ -113,9 +111,7 @@ const setUserFormSubmit = (onSuccess, onError) => {
         .catch(() => {
           onError();
         }).finally(unblockSubmitButton);
-
     }
-
   });
 };
 
@@ -123,8 +119,7 @@ const initUpload = () => {
   initSlider();
   updateEffect();
   uploadFile.addEventListener('change', onClickUploadFile);
-  setUserFormSubmit(closeSuccessSubmitForm, renderMessageErrorForm);
-
+  setUserFormSubmit(closeSuccessSubmitForm, closeErrorSubmitForm);
 };
 
 smaller.addEventListener('click', onButtonSmallerClick);
