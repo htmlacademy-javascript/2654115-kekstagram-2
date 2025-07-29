@@ -9,7 +9,7 @@ const commentsLoader = bigPicture.querySelector('.comments-loader');
 let currCountComm = 0;
 let massComments = [];
 
-const renderComent = (comment) => {
+const renderComment = (comment) => {
 
   const newComment = comentsTemplate.cloneNode(true);
   const bigPictureSocialPicture = newComment.querySelector('.social__picture');
@@ -23,7 +23,7 @@ const renderComent = (comment) => {
 const renderNextCommentsPack = () => {
 
   const currRenderPackComments = massComments.slice(currCountComm, currCountComm + COMMENT_PACK);
-  renderFragment(currRenderPackComments, renderComent, bigPictureSocialComments);
+  renderFragment(currRenderPackComments, renderComment, bigPictureSocialComments);
   currCountComm += currRenderPackComments.length;
   bigPicture.querySelector('.social__comment-shown-count').textContent = currCountComm;
   if (currCountComm === massComments.length) {
@@ -31,22 +31,21 @@ const renderNextCommentsPack = () => {
   }
 };
 
-const onClickCommentsloader = () => {
+const onClickCommentsLoader = () => {
   renderNextCommentsPack();
 };
 
 const closeComments = () => {
   currCountComm = 0;
   commentsLoader.classList.remove('hidden');
-  commentsLoader.removeEventListener('click', onClickCommentsloader);
+  commentsLoader.removeEventListener('click', onClickCommentsLoader);
 };
 
 const renderComments = (comments) => {
   bigPictureSocialComments.innerHTML = '';
-
   massComments = comments;
   renderNextCommentsPack();
-  commentsLoader.addEventListener('click', onClickCommentsloader);
+  commentsLoader.addEventListener('click', onClickCommentsLoader);
 };
 
 export { bigPictureSocialComments, renderComments, closeComments };

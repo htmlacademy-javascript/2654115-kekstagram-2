@@ -18,6 +18,12 @@ function onBigPictureFormKeydownEsc(evt) {
   }
 }
 
+function onBigPictureClose() {
+
+  closeBigPicture();
+
+}
+
 const renderModalBigPicture = (picture) => {
   const bigPictureImg = bigPicture.querySelector('.big-picture__img img');
   bigPictureImg.src = picture.url;
@@ -50,6 +56,6 @@ const renderBigPictures = (items) => {
 
 };
 
-closeButtonBigPicture.addEventListener('click', closeBigPicture);
+closeButtonBigPicture.addEventListener('click', onBigPictureClose);
 
 export { renderBigPictures, bigPicture };
