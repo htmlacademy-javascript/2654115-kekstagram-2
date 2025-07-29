@@ -45,7 +45,6 @@ const renderMessageSuccessForm = () => {
   document.addEventListener('keydown', onFormKyedownEsc);
   btnSuccess.addEventListener('click', onMessageRemove);
   document.addEventListener('click', onBodyClick);
-
 };
 
 const renderMessageErrorForm = () => {

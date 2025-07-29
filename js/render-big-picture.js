@@ -19,9 +19,7 @@ function onBigPictureFormKeydownEsc(evt) {
 }
 
 function onBigPictureClose() {
-
   closeBigPicture();
-
 }
 
 const renderModalBigPicture = (picture) => {
@@ -53,7 +51,6 @@ const renderBigPictures = (items) => {
       openBigPicture(image.dataset.pictureId, items);
     })
   );
-
 };
 
 closeButtonBigPicture.addEventListener('click', onBigPictureClose);

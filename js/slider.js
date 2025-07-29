@@ -120,7 +120,6 @@ const resetSlider = () => {
 };
 
 const updateEffect = () => {
-
   radioBtn.forEach((radio) => radio.addEventListener('click', onEffectButtonClick));
 };
 

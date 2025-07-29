@@ -27,7 +27,6 @@ const pristine = new Pristine(uploadForm, {
   classTo: 'img-upload__field-wrapper',
   errorTextParent: 'img-upload__field-wrapper',
   errorTextClass: 'img-upload__field-wrapper--error',
-
 });
 
 const onUploadFormKyedownEsc = (evt) => {
@@ -36,9 +35,8 @@ const onUploadFormKyedownEsc = (evt) => {
     closeUploadForm();
   }
 };
+
 pristine.addValidator(hashtagInput, isValidHastag, erorrString);
-
-
 pristine.addValidator(commentsInput, isValidComment, 'Комментарий не должен превышать 140 символов');
 
 const openUploadForm = () => {
@@ -58,7 +56,6 @@ const openUploadForm = () => {
     document.addEventListener('keydown', onUploadFormKyedownEsc);
     document.body.classList.add('modal-open');
   }
-
 };
 
 const clearForm = () => {
@@ -75,16 +72,13 @@ function closeUploadForm() {
   resetSlider();
   resetScalle();
   document.body.classList.remove('modal-open');
-
 }
 
 
 closeForm.addEventListener('click', closeUploadForm);
 
 const onClickUploadFile = () => {
-
   openUploadForm();
-
 };
 
 const closeSuccessSubmitForm = () => {
@@ -117,9 +111,7 @@ const setUserFormSubmit = (onSuccess, onError) => {
         .catch(() => {
           onError();
         }).finally(unblockSubmitButton);
-
     }
-
   });
 };
 
@@ -128,7 +120,6 @@ const initUpload = () => {
   updateEffect();
   uploadFile.addEventListener('change', onClickUploadFile);
   setUserFormSubmit(closeSuccessSubmitForm, closeErrorSubmitForm);
-
 };
 
 smaller.addEventListener('click', onButtonSmallerClick);

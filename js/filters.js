@@ -21,7 +21,6 @@ const modeFilters = {
     name: 'filter-discussed',
     mode: (images) => images.slice().sort(compareComments),
   }
-
 };
 
 
@@ -61,8 +60,6 @@ const renderImages = (filterId, image) => {
   }
   clearImages();
   renderFragment(imgFilters, createPicture, pictureContainer);
-
-
 };
 
 const renderFiltersImages = (image) => {
@@ -75,7 +72,6 @@ const renderFiltersImages = (image) => {
   }
 
   filterForm.addEventListener('click', debounce(onFiltersClick, RERENDER_DELAY));
-
 };
 
 const initFilters = () => {
