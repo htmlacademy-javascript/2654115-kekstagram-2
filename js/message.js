@@ -1,6 +1,8 @@
 // отрисовка и обработка информационных сообщений
 import { findTemplate, isEscape } from './util';
 
+const ERROR_SHOW_TIME = 5000;
+
 const sucsessFormTemplate = findTemplate('#success');
 const messageSuccess = sucsessFormTemplate.cloneNode(true);
 
@@ -9,8 +11,6 @@ const errorSuccess = errorFormTemplate.cloneNode(true);
 
 const errorGetDataTemplate = findTemplate('#data-error');
 const errorDetData = errorGetDataTemplate.cloneNode(true);
-
-const ERROR_SHOW_TIME = 5000;
 
 let isMessageOpen = false;
 

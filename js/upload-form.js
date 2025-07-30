@@ -2,7 +2,7 @@
 //Отображение и отправка формы.
 import { isEscape } from './util';
 import { smaller, bigger, onButtonSmallerClick, onButtonBiggerClick, resetScalle } from './scale';
-import { isValidComment, isValidHastag, erorrString, commentsInput, hashtagInput } from './validation';
+import { isValidComment, isValidHastag, getErorrString, commentsInput, hashtagInput } from './validation';
 import { initSlider, updateEffect, resetSlider } from './slider';
 import { sendData } from './api';
 import { renderMessageSuccessForm, renderMessageErrorForm, getMessageModalOpen } from './message';
@@ -36,7 +36,7 @@ const onUploadFormKyedownEsc = (evt) => {
   }
 };
 
-pristine.addValidator(hashtagInput, isValidHastag, erorrString);
+pristine.addValidator(hashtagInput, isValidHastag, getErorrString);
 pristine.addValidator(commentsInput, isValidComment, 'Комментарий не должен превышать 140 символов');
 
 const openUploadForm = () => {
@@ -74,8 +74,11 @@ function closeUploadForm() {
   document.body.classList.remove('modal-open');
 }
 
+function onUploadFormClickClose(){
+  closeUploadForm();
+}
 
-closeForm.addEventListener('click', closeUploadForm);
+closeForm.addEventListener('click', onUploadFormClickClose);
 
 const onClickUploadFile = () => {
   openUploadForm();
