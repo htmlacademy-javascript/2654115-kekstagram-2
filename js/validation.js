@@ -21,6 +21,8 @@ const ERROR_MESSAGES = {
   }
 };
 
+const REGULAR_EX_HASHTAG = /^#([а-яёa-z0-9]){1,19}$/i;
+
 const uploadForm = document.querySelector('.img-upload__form');
 const commentsInput = uploadForm.querySelector('.text__description');
 const hashtagInput = uploadForm.querySelector('.text__hashtags');
@@ -28,14 +30,14 @@ const hashtagInput = uploadForm.querySelector('.text__hashtags');
 const isValidComment = () => commentsInput.value.length < VALIDATION_RULES.MAX_LENGTH_COMMENT;
 
 let messageErrorHastag = '';
-const erorrString = () => messageErrorHastag;
+const getErorrString = () => messageErrorHastag;
 
 const isValidHastag = () => {
 
   if (hashtagInput.value.length !== 0) {
     const hashtags = hashtagInput.value.toLowerCase().trim().split(/\s+/);
     const uniqueHashtags = new Set();
-    const regularExHashtag = /^#([а-яёa-z0-9]){1,19}$/i;
+
     messageErrorHastag = '';
 
     if (hashtags.length > VALIDATION_RULES.MAX_HASHTAG) {
@@ -61,7 +63,7 @@ const isValidHastag = () => {
         messageErrorHastag = ERROR_MESSAGES.HASHTAGS.BY_SPACE;
         return false;
       }
-      if (!regularExHashtag.test(tag)) {
+      if (!REGULAR_EX_HASHTAG.test(tag)) {
         messageErrorHastag = ERROR_MESSAGES.HASHTAGS.INVALID_CHARACTERS;
         return false;
       }
@@ -79,4 +81,4 @@ const isValidHastag = () => {
 
 };
 
-export { isValidComment, isValidHastag, erorrString, commentsInput, hashtagInput };
+export { isValidComment, isValidHastag, getErorrString, commentsInput, hashtagInput };
